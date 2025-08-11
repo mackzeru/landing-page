@@ -1,0 +1,42 @@
+export const sourceCandidates = [
+  {
+    id: 1,
+    name: "Emma Thompson",
+    role: "UI/UX Designer",
+    match: 95,
+    location: "San Francisco, CA",
+    experience: "5 years",
+  },
+  {
+    id: 2,
+    name: "Andrew Miller",
+    role: "Frontend Developer",
+    match: 88,
+    location: "Austin, TX",
+    experience: "3 years",
+  },
+  {
+    id: 3,
+    name: "Sophie Chen",
+    role: "Product Designer",
+    match: 82,
+    location: "Seattle, WA",
+    experience: "4 years",
+  },
+  {
+    id: 4,
+    name: "James Wilson",
+    role: "UI Designer",
+    match: 78,
+    location: "Chicago, IL",
+    experience: "6 years",
+  },
+  {
+    id: 5,
+    name: "Maria Rodriguez",
+    role: "UX Researcher",
+    match: 75,
+    location: "Miami, FL",
+    experience: "2 years",
+  },
+];

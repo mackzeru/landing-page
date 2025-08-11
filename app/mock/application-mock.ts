@@ -1,0 +1,42 @@
+export const applicants = [
+  {
+    id: 1,
+    name: "John Smith",
+    role: "Frontend Developer",
+    status: "Interview",
+    date: "Jun 15, 2023",
+    stage: "Technical Interview",
+  },
+  {
+    id: 2,
+    name: "Emily Johnson",
+    role: "Product Manager",
+    status: "Rejected",
+    date: "Jun 12, 2023",
+    stage: "Final Interview",
+  },
+  {
+    id: 3,
+    name: "Michael Brown",
+    role: "UI Designer",
+    status: "Offered",
+    date: "Jun 10, 2023",
+    stage: "Offer Stage",
+  },
+  {
+    id: 4,
+    name: "Sarah Wilson",
+    role: "Data Analyst",
+    status: "New",
+    date: "Jun 8, 2023",
+    stage: "Application Review",
+  },
+  {
+    id: 5,
+    name: "David Lee",
+    role: "Backend Developer",
+    status: "Assessment",
+    date: "Jun 5, 2023",
+    stage: "Technical Assessment",
+  },
+];

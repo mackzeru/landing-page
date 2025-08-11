@@ -1,0 +1,292 @@
+"use client";
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Star, Quote } from "lucide-react";
+import { ScrollReveal } from "./ScrollReveal";
+import { useEffect, useRef } from "react";
+
+const testimonials = [
+  {
+    quote:
+      "Had 5 interviews booked within 24 hours of posting. The LinkedIn integration is a game-changer.",
+    author: "Sarah Chen",
+    title: "CTO",
+    company: "TechScale",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    rating: 5,
+    metrics: "5 interviews in 24hrs",
+    industry: "Technology",
+  },
+  {
+    quote:
+      "10x faster than our old process. The AI actually understands what we're looking for in candidates.",
+    author: "Michael Rodriguez",
+    title: "VP of Talent",
+    company: "FinTech Pro",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    rating: 5,
+    metrics: "10x faster hiring",
+    industry: "Financial Services",
+  },
+  {
+    quote:
+      "Finally beating FAANG companies to top candidates. The autonomous mode is incredible.",
+    author: "Emily Watson",
+    title: "Recruiting Lead",
+    company: "DataCorp",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    rating: 5,
+    metrics: "Beat FAANG to hires",
+    industry: "Data Analytics",
+  },
+  {
+    quote:
+      "Reduced our time-to-hire from 45 days to 12 days. The PhD-level resume scoring is spot on.",
+    author: "David Kim",
+    title: "Head of People",
+    company: "StartupXYZ",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    rating: 5,
+    metrics: "45 → 12 days hiring",
+    industry: "Startup",
+  },
+  {
+    quote:
+      "The multi-platform search saved us thousands in recruiting fees. ROI was immediate.",
+    author: "Lisa Thompson",
+    title: "Talent Acquisition Director",
+    company: "Enterprise Corp",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+    rating: 5,
+    metrics: "Immediate ROI",
+    industry: "Enterprise",
+  },
+  {
+    quote:
+      "Our response rates went from 15% to 48%. The personalized outreach is incredibly effective.",
+    author: "James Wilson",
+    title: "Senior Recruiter",
+    company: "GrowthCo",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    rating: 5,
+    metrics: "15% → 48% response rate",
+    industry: "Growth Stage",
+  },
+];
+
+export function EnhancedTestimonials() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current || !scrollWrapperRef.current) return;
+
+    const container = containerRef.current;
+    const scrollWrapper = scrollWrapperRef.current;
+    const cards = Array.from(scrollWrapper.children) as HTMLElement[];
+
+    // Duplicate cards for infinite scroll effect
+    const clonedCards = cards.map(
+      (card) => card.cloneNode(true) as HTMLElement
+    );
+    clonedCards.forEach((card) => {
+      card.setAttribute("aria-hidden", "true");
+      scrollWrapper.appendChild(card);
+    });
+
+    let animationFrameId: number;
+    let scrollSpeed = 1; // pixels per frame
+    let isPaused = false;
+
+    const startScrolling = () => {
+      if (isPaused) return;
+
+      if (scrollWrapper.scrollLeft >= scrollWrapper.scrollWidth / 2) {
+        scrollWrapper.scrollLeft -= scrollWrapper.scrollWidth / 2;
+      } else {
+        scrollWrapper.scrollLeft += scrollSpeed;
+      }
+
+      animationFrameId = requestAnimationFrame(startScrolling);
+    };
+
+    // Pause on hover
+    const handleMouseEnter = () => {
+      isPaused = true;
+    };
+    const handleMouseLeave = () => {
+      isPaused = false;
+      startScrolling();
+    };
+
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    startScrolling();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
+  return (
+    <section className="py-24 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <ScrollReveal>
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 dark:bg-yellow-900/20 rounded-2xl mb-6">
+              <Star className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
+            </div>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              What Our Customers Say
+            </h2>
+            <p className="text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
+              Real results from real recruiting teams who've transformed their
+              hiring process
+            </p>
+            <div className="flex items-center justify-center mt-6 space-x-2">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-6 w-6 fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+              </div>
+              <span className="text-lg font-semibold text-gray-900 dark:text-white ml-3">
+                4.9/5
+              </span>
+              <span className="text-gray-600 dark:text-gray-400">
+                from 200+ reviews
+              </span>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <div ref={containerRef} className="relative overflow-hidden py-4">
+          <div
+            ref={scrollWrapperRef}
+            className="flex space-x-8 w-max will-change-transform"
+          >
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="flex-shrink-0 w-[400px]">
+                <ScrollReveal delay={index * 150}>
+                  <Card className="group border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-800 overflow-hidden h-full">
+                    <CardContent className="p-8 relative h-full">
+                      {/* Quote Icon */}
+                      <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <Quote className="h-12 w-12 text-blue-600" />
+                      </div>
+
+                      {/* Rating */}
+                      <div className="flex mb-6">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                          />
+                        ))}
+                      </div>
+
+                      {/* Quote */}
+                      <blockquote className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-lg font-medium">
+                        "{testimonial.quote}"
+                      </blockquote>
+
+                      {/* Metrics Badge */}
+                      <div className="mb-6">
+                        <Badge className="bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 px-3 py-1">
+                          {testimonial.metrics}
+                        </Badge>
+                      </div>
+
+                      {/* Author Info */}
+                      <div className="flex items-center">
+                        <div className="relative">
+                          <img
+                            src={testimonial.avatar || "/placeholder.svg"}
+                            alt={testimonial.author}
+                            className="w-14 h-14 rounded-full object-cover ring-4 ring-white dark:ring-gray-700 shadow-lg"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                                testimonial.author
+                              )}&background=3b82f6&color=fff&size=150`;
+                            }}
+                          />
+                          <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center">
+                            <div className="w-2 h-2 bg-white rounded-full"></div>
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <div className="font-bold text-gray-900 dark:text-white text-lg">
+                            {testimonial.author}
+                          </div>
+                          <div className="text-gray-600 dark:text-gray-400 font-medium">
+                            {testimonial.title}
+                          </div>
+                          <div className="text-blue-600 dark:text-blue-400 font-semibold">
+                            {testimonial.company}
+                          </div>
+                          <div className="text-sm text-gray-500 dark:text-gray-500">
+                            {testimonial.industry}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Trust Indicators */}
+        <ScrollReveal delay={800}>
+          <div className="mt-20 text-center">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-blue-100 dark:border-blue-800">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Join 2,000+ recruiting teams
+              </h3>
+              <div className="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                    48%
+                  </div>
+                  <div className="text-gray-600 dark:text-gray-300">
+                    Average response rate
+                  </div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    85%
+                  </div>
+                  <div className="text-gray-600 dark:text-gray-300">
+                    Time saved vs manual
+                  </div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                    24hrs
+                  </div>
+                  <div className="text-gray-600 dark:text-gray-300">
+                    Average time to interview
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
