@@ -10,7 +10,10 @@ export function IntegrationDashboard() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section className="py-32 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+    <section
+      className="py-32 bg-gray-50 dark:bg-gray-800 relative overflow-hidden"
+      id={"resources"}
+    >
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <ScrollReveal>
           <div className="text-center mb-20">
@@ -112,51 +115,6 @@ export function IntegrationDashboard() {
         </div>
 
         {/* LinkedIn Exclusive Section */}
-        <div className="my-10">
-          <ScrollReveal delay={1000}>
-            <section className="relative bg-blue-50 dark:bg-[#0c0f1c] py-20 px-6 rounded-4xl shadow-2xl overflow-hidden border border-blue-100 dark:border-gray-800">
-              {/* Soft Animated Glow */}
-              <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-slow pointer-events-none" />
-              <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
-
-              <div className="relative z-10 max-w-5xl mx-auto text-center">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-200 to-blue-600 rounded-3xl flex items-center justify-center shadow-lg">
-                    <Zap className="h-10 w-10 text-white" />
-                  </div>
-                  <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                    🚀 Exclusive LinkedIn Plugin
-                  </h3>
-                </div>
-
-                {/* Description */}
-                <p className="text-lg sm:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed">
-                  Our exclusive LinkedIn plugin sources candidates directly via
-                  your Recruiter account — with no scraping, full compliance,
-                  and enterprise-level security. Unlock hidden talent pools
-                  faster.
-                </p>
-
-                {/* Highlight Badges */}
-                <div className="flex flex-wrap justify-center gap-4">
-                  {[
-                    "Direct API Access",
-                    "No Scraping",
-                    "Enterprise Security",
-                  ].map((text, idx) => (
-                    <Badge
-                      key={idx}
-                      className="bg-white/20 dark:bg-white/10 text-blue-900 dark:text-white text-sm sm:text-base px-6 py-2 rounded-full backdrop-blur-sm shadow-md hover:scale-105 transition-transform"
-                    >
-                      {text}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </ScrollReveal>
-        </div>
       </div>
     </section>
   );

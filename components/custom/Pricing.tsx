@@ -7,6 +7,7 @@ import { Check, Star, Zap, Users, Building } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 import { useEffect, useState } from "react";
 import { SubscriptionPlan, SubscriptionPlans } from "@/app/_types/subscription";
+import { BASE_URL, FRONTEND_URL } from "@/constant/env-constant";
 
 const getIcon = (plan: SubscriptionPlan) => {
   switch (plan.name.toUpperCase()) {
@@ -70,7 +71,7 @@ export function EnhancedPricing() {
   }, []);
 
   async function fetchPricing() {
-    const res = await fetch("http://localhost:3001/api/v1/subscription/plans");
+    const res = await fetch(`${BASE_URL}/api/v1/subscription/plans`);
     const data = await res.json();
     // Enhance the plans data with additional properties for UI
     const enhancedPlans = data.data.map((plan: SubscriptionPlan) => ({
@@ -86,7 +87,7 @@ export function EnhancedPricing() {
   }
 
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-800">
+    <section className="py-24 bg-gray-50 dark:bg-gray-800" id="pricing">
       <div className="max-w-7xl mx-auto px-6">
         <ScrollReveal>
           <div className="text-center mb-20">
@@ -184,6 +185,9 @@ export function EnhancedPricing() {
                       variant={
                         plan.name === "Enterprise" ? "outline" : "default"
                       }
+                      onClick={() => {
+                        window.location.href = `${FRONTEND_URL}/plan/checkout?plan=${plan._id}`;
+                      }}
                     >
                       {plan.cta}
                     </Button>

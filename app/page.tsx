@@ -30,6 +30,7 @@ import Footer from "@/components/custom/Footer";
 import Hero from "@/components/custom/Hero";
 import CompetitiveAdvantages from "@/components/custom/CompetitiveAdvantages";
 import { IntegrationDashboard } from "@/components/custom/IntegrationDashbord";
+import Navigation from "@/components/custom/Navigation";
 export default function LeeluAI() {
   return (
     <div className="min-h-screen bg-blue-300   dark:bg-gray-900 transition-colors">
@@ -53,28 +54,7 @@ export default function LeeluAI() {
             </div>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <div className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">
-                <span className="font-medium">Product</span>
-                <ChevronDown className="h-4 w-4" />
-              </div>
-              <div className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">
-                <span className="font-medium">Resources</span>
-                <ChevronDown className="h-4 w-4" />
-              </div>
-              <span className="font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">
-                Pricing
-              </span>
-              <span className="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 cursor-pointer transition-colors">
-                Talk to Our Team
-              </span>
-              <span className="font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">
-                Sign in
-              </span>
-
-              {/* Theme Toggle Dropdown */}
-              <div className="flex items-center">{/* <ThemeToggle /> */}</div>
-            </nav>
+            <Navigation />
 
             {/* CTA Button */}
             <div className="flex items-center space-x-4">
@@ -98,7 +78,10 @@ export default function LeeluAI() {
       <EnhancedTimeline />
 
       {/* Multi-Source Search Section - Enhanced */}
-      <section className="py-32 bg-white dark:bg-gray-900 relative overflow-hidden">
+      <section
+        className="py-32 bg-white dark:bg-gray-900 relative overflow-hidden"
+        id={"product"}
+      >
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -227,97 +210,6 @@ export default function LeeluAI() {
       {/* Competitive Advantages - Enhanced */}
       <CompetitiveAdvantages />
       <IntegrationDashboard />
-      {/* Integration Ecosystem - Enhanced */}
-      <section className="py-40 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="text-center mb-24">
-              <h2 className="text-6xl font-bold text-gray-900 dark:text-white mb-8">
-                All Your Tools in One Dashboard
-              </h2>
-              <p className="text-3xl text-gray-600 dark:text-gray-300 max-w-5xl mx-auto leading-relaxed">
-                Seamless integration with your existing recruiting stack.
-                Connect once, recruit everywhere.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-20">
-            {[
-              {
-                name: "LinkedIn",
-                color: "from-blue-500 to-blue-600",
-                badge: "Exclusive API",
-              },
-              {
-                name: "Indeed",
-                color: "from-green-500 to-green-600",
-                badge: "Direct Feed",
-              },
-              {
-                name: "Monster",
-                color: "from-purple-500 to-purple-600",
-                badge: "Real-time",
-              },
-              {
-                name: "CareerBuilder",
-                color: "from-orange-500 to-orange-600",
-                badge: "Premium",
-              },
-              {
-                name: "Greenhouse",
-                color: "from-emerald-500 to-emerald-600",
-                badge: "ATS Sync",
-              },
-              {
-                name: "Lever",
-                color: "from-indigo-500 to-indigo-600",
-                badge: "Bi-directional",
-              },
-              {
-                name: "Workday",
-                color: "from-pink-500 to-pink-600",
-                badge: "Enterprise",
-              },
-              {
-                name: "Bullhorn",
-                color: "from-cyan-500 to-cyan-600",
-                badge: "CRM Sync",
-              },
-            ].map((platform, index) => (
-              <ScrollReveal key={index} delay={index * 150}>
-                <div className="group bg-white dark:bg-gray-900 rounded-3xl p-10 shadow-xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-600 transition-all duration-700 hover:shadow-2xl hover:scale-110 transform cursor-pointer relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-blue-50/50 dark:to-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative z-10">
-                    <div
-                      className={`w-24 h-24 bg-gradient-to-r ${platform.color} rounded-3xl mx-auto mb-8 flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl group-hover:rotate-12`}
-                    >
-                      <span className="text-3xl font-bold text-white">
-                        {platform.name.slice(0, 2)}
-                      </span>
-                    </div>
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-                      {platform.name}
-                    </div>
-                    <div className="text-center">
-                      <Badge
-                        className={`bg-gradient-to-r ${platform.color} text-white text-base px-4 py-2 group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        {platform.badge}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials */}
       <EnhancedTestimonials />
