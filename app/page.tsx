@@ -27,9 +27,12 @@ import { EnhancedTimeline } from "@/components/custom/TimelineSection";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import Footer from "@/components/custom/Footer";
+import Hero from "@/components/custom/Hero";
+import CompetitiveAdvantages from "@/components/custom/CompetitiveAdvantages";
+import { IntegrationDashboard } from "@/components/custom/IntegrationDashbord";
 export default function LeeluAI() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-blue-300   dark:bg-gray-900 transition-colors">
       {/* Header */}
       <header className="w-full border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50 backdrop-blur-sm bg-white/80 dark:bg-gray-900/80">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -70,17 +73,13 @@ export default function LeeluAI() {
               </span>
 
               {/* Theme Toggle Dropdown */}
-              <div className="flex items-center">
-                <ThemeToggle />
-              </div>
+              <div className="flex items-center">{/* <ThemeToggle /> */}</div>
             </nav>
 
             {/* CTA Button */}
             <div className="flex items-center space-x-4">
               {/* Mobile Theme Toggle */}
-              <div className="md:hidden">
-                <ThemeToggle />
-              </div>
+              <div className="md:hidden">{/* <ThemeToggle /> */}</div>
               <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-full font-medium">
                 Start Free Trial
               </Button>
@@ -90,133 +89,7 @@ export default function LeeluAI() {
       </header>
 
       {/* Hero Section with Video Background */}
-      <main className="relative overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover opacity-10"
-          >
-            <source src="/placeholder.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-purple-50/80 dark:from-blue-900/20 dark:to-purple-900/20" />
-        </div>
-
-        {/* Background Pattern Overlay */}
-        <div className="absolute inset-0 overflow-hidden">
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 1440 800"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern
-                id="grid"
-                width="40"
-                height="40"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 40 0 L 0 0 0 40"
-                  fill="none"
-                  stroke="#e5e7eb"
-                  strokeWidth="1"
-                  opacity="0.3"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-            <g stroke="#e5e7eb" strokeWidth="1" opacity="0.4">
-              <line x1="0" y1="200" x2="1440" y2="600" />
-              <line x1="0" y1="250" x2="1440" y2="650" />
-              <line x1="0" y1="300" x2="1440" y2="700" />
-              <line x1="0" y1="150" x2="1440" y2="550" />
-              <line x1="0" y1="100" x2="1440" y2="500" />
-              <line
-                x1="0"
-                y1="180"
-                x2="1440"
-                y2="580"
-                stroke="#8b5cf6"
-                strokeWidth="1.5"
-                opacity="0.6"
-              />
-              <line
-                x1="0"
-                y1="320"
-                x2="1440"
-                y2="720"
-                stroke="#3b82f6"
-                strokeWidth="1.5"
-                opacity="0.6"
-              />
-            </g>
-          </svg>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-20">
-          {/* Main Headline */}
-          <div className="text-center mb-8">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
-              From Job Post to First Interview
-              <br />
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                in 24 Hours
-              </span>
-            </h1>
-
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
-              Your AI Copilot searches 10+ platforms simultaneously, engages
-              candidates autonomously,
-              <br />
-              and doesn't stop until interviews are scheduled
-            </p>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex justify-center space-x-4 mb-16">
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-medium text-base shadow-lg">
-              Start Free Trial →
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 px-8 py-3 rounded-full font-medium text-base shadow-lg"
-            >
-              <Play className="h-4 w-4 mr-2" />
-              Watch Demo
-            </Button>
-          </div>
-
-          {/* Key Visual - Platform Dashboard */}
-          <div className="relative max-w-6xl mx-auto">
-            <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-              <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-                <div className="flex items-center space-x-3">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    Leelu.ai - AI Recruiting Copilot
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <DemoInterface />
-                  <CopilotPanel />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+      <Hero />
 
       {/* Rotating Trust Badges */}
       <RotatingTrustBadges />
@@ -304,7 +177,7 @@ export default function LeeluAI() {
           </div>
 
           <ScrollReveal delay={800}>
-            <div className="relative overflow-hidden rounded-2xl p-8 sm:p-10 bg-white dark:bg-gray-900 shadow-xl border border-blue-100 dark:border-gray-700">
+            <div className="relative overflow-hidden rounded-2xl p-8 sm:p-10 bg-blue-100 dark:bg-gray-900 shadow-xl border border-blue-200 dark:border-gray-700">
               {/* Animated Blurred Background Blobs */}
               <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute w-80 h-80 bg-blue-400/20 rounded-full blur-[100px] animate-[pulse_10s_ease-in-out_infinite] top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2" />
@@ -318,7 +191,7 @@ export default function LeeluAI() {
                     <Zap className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white">
-                    🚀 Exclusive LinkedIn Plugin11
+                    🚀 Exclusive LinkedIn Plugin
                   </h3>
                 </div>
 
@@ -335,7 +208,7 @@ export default function LeeluAI() {
                     (tag, i) => (
                       <Badge
                         key={i}
-                        className="bg-blue-500/10 dark:bg-blue-400/10 text-blue-700 dark:text-blue-300 text-sm px-4 py-1.5 rounded-full backdrop-blur-md hover:scale-105 transition-transform duration-200"
+                        className="bg-blue-500/10 dark:bg-blue-400/10 text-blue-700 dark:text-blue-300 text-sm px-4 py-1.5 rounded-full backdrop-blur-md hover:scale-105 transition-transform duration-200 hover:text-white"
                       >
                         {tag}
                       </Badge>
@@ -352,111 +225,8 @@ export default function LeeluAI() {
       <CopilotScrollSection />
 
       {/* Competitive Advantages - Enhanced */}
-      <section className="py-32 bg-white dark:bg-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-40 left-40 w-80 h-80 bg-green-500/10 rounded-full blur-3xl animate-bounce"></div>
-          <div className="absolute bottom-40 right-40 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-bounce delay-500"></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="text-center mb-20">
-              <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Why We Beat pin.com/juicebox.ai
-              </h2>
-              <p className="text-2xl text-gray-600 dark:text-gray-300">
-                The competitive advantages that set us apart
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div className="space-y-8">
-              {[
-                {
-                  title: "True Parallel Processing",
-                  desc: "Not sequential like competitors",
-                  color: "green",
-                },
-                {
-                  title: "LinkedIn Plugin",
-                  desc: "No scraping - direct API access",
-                  color: "blue",
-                },
-                {
-                  title: "Autonomous Until Done",
-                  desc: "Not just 1-2 messages like others",
-                  color: "purple",
-                },
-                {
-                  title: "PhD-Level Resume Scoring",
-                  desc: "Skills/experience matching precision",
-                  color: "orange",
-                },
-              ].map((advantage, index) => (
-                <ScrollReveal key={index} delay={index * 200}>
-                  <div
-                    className={`group flex items-center space-x-6 p-8 bg-${advantage.color}-50 dark:bg-${advantage.color}-900/20 rounded-3xl border border-${advantage.color}-200 dark:border-${advantage.color}-700 hover:shadow-2xl transition-all duration-500 hover:scale-105 transform cursor-pointer`}
-                  >
-                    <div
-                      className={`w-12 h-12 bg-${advantage.color}-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <Check className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                        {advantage.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {advantage.desc}
-                      </p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-
-            <ScrollReveal delay={600}>
-              <div className="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 rounded-3xl p-12 shadow-2xl">
-                <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center">
-                  Performance Stats
-                </h3>
-                <div className="space-y-10">
-                  {[
-                    {
-                      value: "85%",
-                      label: "Time saved vs manual recruiting",
-                      color: "blue",
-                    },
-                    {
-                      value: "3x",
-                      label: "Higher response rates",
-                      color: "purple",
-                    },
-                    {
-                      value: "48%",
-                      label: "Average candidate response rate",
-                      color: "green",
-                    },
-                  ].map((stat, index) => (
-                    <div key={index} className="text-center group">
-                      <div
-                        className={`text-6xl font-bold text-${stat.color}-600 mb-3 group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        {stat.value}
-                      </div>
-                      <div className="text-lg text-gray-600 dark:text-gray-300">
-                        {stat.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
+      <CompetitiveAdvantages />
+      <IntegrationDashboard />
       {/* Integration Ecosystem - Enhanced */}
       <section className="py-40 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
         <div className="absolute inset-0">
@@ -546,50 +316,6 @@ export default function LeeluAI() {
               </ScrollReveal>
             ))}
           </div>
-
-          <ScrollReveal delay={1000}>
-            <section className="relative bg-blue-50 dark:bg-[#0c0f1c] py-20 px-6 rounded-4xl shadow-2xl overflow-hidden border border-blue-100 dark:border-gray-800">
-              {/* Soft Animated Glow */}
-              <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-slow pointer-events-none" />
-              <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
-
-              <div className="relative z-10 max-w-5xl mx-auto text-center">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center shadow-lg">
-                    <Zap className="h-10 w-10 text-white" />
-                  </div>
-                  <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                    🚀 Exclusive LinkedIn Plugin
-                  </h3>
-                </div>
-
-                {/* Description */}
-                <p className="text-lg sm:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed">
-                  Our exclusive LinkedIn plugin sources candidates directly via
-                  your Recruiter account — with no scraping, full compliance,
-                  and enterprise-level security. Unlock hidden talent pools
-                  faster.
-                </p>
-
-                {/* Highlight Badges */}
-                <div className="flex flex-wrap justify-center gap-4">
-                  {[
-                    "Direct API Access",
-                    "No Scraping",
-                    "Enterprise Security",
-                  ].map((text, idx) => (
-                    <Badge
-                      key={idx}
-                      className="bg-white/20 dark:bg-white/10 text-blue-900 dark:text-white text-sm sm:text-base px-6 py-2 rounded-full backdrop-blur-sm shadow-md hover:scale-105 transition-transform"
-                    >
-                      {text}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </ScrollReveal>
         </div>
       </section>
 

@@ -5,76 +5,86 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, Star, Zap, Users, Building } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
+import { useEffect, useState } from "react";
+import { SubscriptionPlan, SubscriptionPlans } from "@/app/_types/subscription";
 
-const pricingPlans = [
-  {
-    name: "Starter",
-    price: "$299",
-    period: "/month",
-    description: "Perfect for small teams getting started with AI recruiting",
-    icon: Users,
-    color: "from-gray-600 to-gray-700",
-    bgColor: "bg-gray-50 dark:bg-gray-800",
-    borderColor: "border-gray-200 dark:border-gray-700",
-    features: [
-      "3 active job postings",
-      "500 candidates per month",
-      "Basic AI sourcing",
-      "Email support",
-      "Standard integrations",
-      "Basic analytics",
-    ],
-    popular: false,
-    cta: "Start Free Trial",
-  },
-  {
-    name: "Professional",
-    price: "$799",
-    period: "/month",
-    description: "Most popular choice for growing recruiting teams",
-    icon: Zap,
-    color: "from-blue-600 to-purple-600",
-    bgColor:
-      "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20",
-    borderColor: "border-blue-200 dark:border-blue-700",
-    features: [
-      "Unlimited job postings",
-      "Autonomous AI mode",
-      "LinkedIn plugin access",
-      "Priority support",
-      "Advanced integrations",
-      "Custom workflows",
-      "Team collaboration",
-      "Advanced analytics",
-    ],
-    popular: true,
-    cta: "Start Free Trial",
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    description: "Tailored solution for large organizations",
-    icon: Building,
-    color: "from-gray-800 to-gray-900",
-    bgColor: "bg-gray-50 dark:bg-gray-800",
-    borderColor: "border-gray-200 dark:border-gray-700",
-    features: [
-      "Dedicated AI training",
-      "SLA guarantee",
-      "Custom integrations",
-      "Dedicated support",
-      "White-label options",
-      "Advanced security",
-      "Custom reporting",
-      "Onboarding assistance",
-    ],
-    popular: false,
-    cta: "Contact Sales",
-  },
-];
+const getIcon = (plan: SubscriptionPlan) => {
+  switch (plan.name.toUpperCase()) {
+    case "STARTER":
+      return Users;
+    case "PROFESSIONAL":
+      return Zap;
+    case "ENTERPRISE":
+      return Building;
+    case "CUSTOM":
+      return Star;
+    default:
+      return Users;
+  }
+};
+
+const getColor = (plan: SubscriptionPlan) => {
+  switch (plan.name.toUpperCase()) {
+    case "STARTER":
+      return "from-blue-600 to-blue-700";
+    case "PROFESSIONAL":
+      return "from-blue-600 to-indigo-600";
+    case "ENTERPRISE":
+      return "from-gray-800 to-gray-900";
+    default:
+      return "from-gray-600 to-gray-700";
+  }
+};
+
+const getBgColor = (plan: SubscriptionPlan) => {
+  switch (plan.name.toUpperCase()) {
+    case "STARTER":
+      return "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20";
+    case "PROFESSIONAL":
+      return "bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20";
+    case "ENTERPRISE":
+      return "bg-gray-50 dark:bg-gray-800";
+    default:
+      return "bg-gray-50 dark:bg-gray-800";
+  }
+};
+
+const getBorderColor = (plan: SubscriptionPlan) => {
+  switch (plan.name.toUpperCase()) {
+    case "STARTER":
+      return "border-blue-200 dark:border-blue-700";
+    case "PROFESSIONAL":
+      return "border-blue-200 dark:border-blue-700";
+    case "ENTERPRISE":
+      return "border-gray-200 dark:border-gray-700";
+    default:
+      return "border-gray-200 dark:border-gray-700";
+  }
+};
 
 export function EnhancedPricing() {
+  const [pricing, setPricing] = useState<SubscriptionPlans>([]);
+
+  useEffect(() => {
+    fetchPricing();
+  }, []);
+
+  async function fetchPricing() {
+    const res = await fetch("http://localhost:3001/api/v1/subscription/plans");
+    const data = await res.json();
+    // Enhance the plans data with additional properties for UI
+    const enhancedPlans = data.data.map((plan: SubscriptionPlan) => ({
+      ...plan,
+      popular: plan.name === "Professional",
+      color: getColor(plan),
+      bgColor: getBgColor(plan),
+      borderColor: getBorderColor(plan),
+      period: plan.billingCycle === "MONTHLY" ? "/month" : "/year",
+      cta: plan.name === "Enterprise" ? "Contact Sales" : "Get Started",
+    }));
+    setPricing(enhancedPlans);
+  }
+
   return (
     <section className="py-24 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-6">
@@ -91,20 +101,22 @@ export function EnhancedPricing() {
         </ScrollReveal>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {pricingPlans.map((plan, index) => {
-            const Icon = plan.icon;
+          {pricing.map((plan, index) => {
+            const Icon = getIcon(plan);
             return (
-              <ScrollReveal key={index} delay={index * 200}>
+              <ScrollReveal key={plan._id} delay={index * 200}>
                 <Card
                   className={`relative transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
                     plan.popular
                       ? "border-2 border-blue-500 dark:border-blue-400 shadow-xl scale-105"
-                      : `border-2 ${plan.borderColor} hover:border-blue-300 dark:hover:border-blue-600`
-                  } ${plan.bgColor} overflow-visible`}
+                      : `border-2 ${getBorderColor(
+                          plan
+                        )} hover:border-blue-300 dark:hover:border-blue-600`
+                  } ${getBgColor(plan)} overflow-visible`}
                 >
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                      <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 text-sm font-semibold">
+                      <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 text-sm font-semibold">
                         <Star className="h-4 w-4 mr-1" />
                         Most Popular
                       </Badge>
@@ -115,7 +127,9 @@ export function EnhancedPricing() {
                     {/* Header */}
                     <div className="text-center mb-8">
                       <div
-                        className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center shadow-lg`}
+                        className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${getColor(
+                          plan
+                        )} flex items-center justify-center shadow-lg`}
                       >
                         <Icon className="h-8 w-8 text-white" />
                       </div>
@@ -131,7 +145,7 @@ export function EnhancedPricing() {
                     <div className="text-center mb-8">
                       <div className="flex items-baseline justify-center mb-2">
                         <span className="text-5xl font-bold text-gray-900 dark:text-white">
-                          {plan.price}
+                          ${plan.price}
                         </span>
                         {plan.period && (
                           <span className="text-xl text-gray-500 dark:text-gray-400 ml-2">
@@ -162,7 +176,7 @@ export function EnhancedPricing() {
                     <Button
                       className={`w-full py-4 text-lg font-semibold transition-all duration-300 ${
                         plan.popular
-                          ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl"
+                          ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl"
                           : plan.name === "Enterprise"
                           ? "border-2 border-gray-900 dark:border-gray-100 text-gray-900 dark:text-gray-100 hover:bg-gray-900 dark:hover:bg-gray-100 hover:text-white dark:hover:text-gray-900 bg-transparent"
                           : "bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900"
@@ -196,15 +210,15 @@ export function EnhancedPricing() {
               <div className="grid md:grid-cols-3 gap-6 text-gray-600 dark:text-gray-300">
                 <div className="flex items-center justify-center">
                   <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>24/7 AI monitoring</span>
+                  <span>AI-powered candidate matching</span>
                 </div>
                 <div className="flex items-center justify-center">
                   <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>GDPR compliant</span>
+                  <span>Interview scheduling</span>
                 </div>
                 <div className="flex items-center justify-center">
                   <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>99.9% uptime SLA</span>
+                  <span>Basic analytics dashboard</span>
                 </div>
               </div>
             </div>

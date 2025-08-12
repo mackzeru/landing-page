@@ -139,7 +139,7 @@ export function EnhancedTestimonials() {
   }, []);
 
   return (
-    <section className="py-24 bg-white dark:bg-gray-900">
+    <section className="py-24 bg-gradient-to-r from-blue-100 to-blue-400 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-6">
         <ScrollReveal>
           <div className="text-center mb-20">
