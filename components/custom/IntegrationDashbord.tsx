@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Zap, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 import { integrations } from "@/constant/integrations";
 

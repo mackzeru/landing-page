@@ -3,20 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  ChevronDown,
-  Play,
-  Star,
-  Check,
-  Users,
-  Zap,
-  BarChart3,
-  Linkedin,
-  Globe,
-} from "lucide-react";
-import { ThemeToggle } from "@/theme/theme-toggler";
-import { DemoInterface } from "@/components/custom/DemoInterface";
-import { CopilotPanel } from "@/components/custom/CopilotPanel";
+import { Check, Users, Zap, BarChart3, Linkedin, Globe } from "lucide-react";
 import { RotatingTrustBadges } from "@/components/custom/RotatingTrustBadges";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
 import { CopilotScrollSection } from "@/components/custom/CopilotScrollSection";
@@ -31,6 +18,7 @@ import Hero from "@/components/custom/Hero";
 import CompetitiveAdvantages from "@/components/custom/CompetitiveAdvantages";
 import { IntegrationDashboard } from "@/components/custom/IntegrationDashbord";
 import Navigation from "@/components/custom/Navigation";
+import { Link } from "react-scroll";
 export default function LeeluAI() {
   return (
     <div className="min-h-screen bg-blue-300   dark:bg-gray-900 transition-colors">
@@ -60,9 +48,19 @@ export default function LeeluAI() {
             <div className="flex items-center space-x-4">
               {/* Mobile Theme Toggle */}
               <div className="md:hidden">{/* <ThemeToggle /> */}</div>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-full font-medium">
+              <Link
+                to="pricing"
+                className="cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white 
+                  px-4 py-2 md:px-1 md:py-1 lg:px-8 lg:py-1
+                  rounded-full font-medium
+                  text-sm sm:text-base md:text-lg
+                  transition-all duration-300
+                  transform hover:scale-105 active:scale-95
+                  shadow-md hover:shadow-lg
+                  inline-block"
+              >
                 Start Free Trial
-              </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -286,9 +284,20 @@ export default function LeeluAI() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 lg:gap-8">
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg lg:text-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                  Start 14-Day Free Trial
-                </Button>
+                <Link
+                  to="pricing"
+                  className="cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white 
+            px-4 py-2 md:px-1 md:py-1 lg:px-8 lg:py-2
+            rounded-full font-medium
+            text-sm sm:text-base md:text-lg
+            transition-all duration-300
+            transform hover:scale-105 active:scale-95
+            shadow-md hover:shadow-lg
+            inline-block"
+                >
+                  Start Free Trial
+                </Link>
+
                 <Button
                   variant="outline"
                   className="border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-600 dark:hover:bg-blue-400 hover:text-white dark:hover:text-gray-900 px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg lg:text-xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"

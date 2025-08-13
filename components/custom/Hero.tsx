@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { DemoInterface } from "./DemoInterface";
 import { CopilotPanel } from "./CopilotPanel";
 import { Button } from "../ui/button";
-import { Play } from "lucide-react";
+import { Play, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Link } from "react-scroll";
 
 const Hero = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <main className="relative overflow-hidden">
       {/* Video Background */}
@@ -95,12 +99,23 @@ const Hero = () => {
 
         {/* CTA Buttons */}
         <div className="flex justify-center space-x-4 mb-16">
-          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-medium text-base shadow-lg">
-            Start Free Trial →
-          </Button>
+          <Link
+            to="pricing"
+            className="cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white 
+            px-4 py-2 md:px-1 md:py-1 lg:px-8 lg:py-1
+            rounded-full font-medium
+            text-sm sm:text-base md:text-lg
+            transition-all duration-300
+            transform hover:scale-105 active:scale-95
+            shadow-md hover:shadow-lg
+            inline-block"
+          >
+            Start Free Trial
+          </Link>
           <Button
             variant="outline"
             className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 px-8 py-3 rounded-full font-medium text-base shadow-lg"
+            onClick={() => setIsDialogOpen(true)}
           >
             <Play className="h-4 w-4 mr-2" />
             Watch Demo
@@ -132,6 +147,46 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      {/* Modal Overlay */}
+      {isDialogOpen && (
+        <div
+          className={cn(
+            "fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4",
+            "bg-white/60 backdrop-blur-sm",
+            "animate-in fade-in-0 duration-300"
+          )}
+          onClick={() => setIsDialogOpen(false)}
+        >
+          {/* Modal Content */}
+          <div
+            className={cn(
+              "relative bg-white rounded-lg sm:rounded-2xl overflow-hidden shadow-2xl border",
+              "w-full max-w-xs sm:max-w-lg md:max-w-3xl lg:max-w-5xl max-h-[90vh]",
+              "animate-in zoom-in-95 duration-300"
+            )}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsDialogOpen(false)}
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-200 backdrop-blur-sm hover:scale-110 touch-manipulation"
+            >
+              <X className="size-5 sm:size-6" />
+            </button>
+
+            {/* Video */}
+            <video
+              className="w-full object-contain border-0 outline-none"
+              autoPlay
+              loop
+              controls
+              playsInline
+            >
+              <source src="/demo.mp4" type="video/mp4"></source>
+            </video>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

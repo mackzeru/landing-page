@@ -32,7 +32,7 @@ export const integrations = [
   {
     name: "Monster",
     category: "Job Board",
-    logo: "https://logos-world.net/wp-content/uploads/2021/02/Monster-Logo.png",
+    logo: "https://seekvectorlogo.com/wp-content/uploads/2019/11/monster-com-vector-logo-small.png",
     badge: "Real-time",
     color: "from-purple-500 to-purple-600",
     bgColor: "bg-purple-50 dark:bg-purple-900/20",
