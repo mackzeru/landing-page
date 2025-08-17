@@ -22,13 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArticleCard } from "../_component/ArticleCard";
 import { BlogPost, FeaturedPost } from "@/app/_types/blog";
 
-interface BlogDetailPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default function BlogDetailPage({ params }: BlogDetailPageProps) {
+export default function BlogDetailPage() {
   return (
     <PageLayout>
       {/* Breadcrumb */}
