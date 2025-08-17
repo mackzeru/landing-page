@@ -10,6 +10,7 @@ export function PageLayout({ children }: PageLayoutProps) {
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
       <Navigation />
       <main>{children}</main>
+      {/* Footer with Quarter-Circle Background */}
       <Footer />
     </div>
   );

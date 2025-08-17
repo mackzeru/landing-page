@@ -27,27 +27,27 @@ export default function SourcingPage() {
     },
     {
       name: "Indeed",
-      logo: "/placeholder.svg?height=40&width=40&text=Indeed",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Indeed_logo.svg",
       count: "250M+",
     },
     {
       name: "Monster",
-      logo: "/placeholder.svg?height=40&width=40&text=Monster",
+      logo: "https://cdn.brandfetch.io/idRrcMU04X/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1748624187091",
       count: "100M+",
     },
     {
       name: "CareerBuilder",
-      logo: "/placeholder.svg?height=40&width=40&text=CB",
+      logo: "https://cdn.brandfetch.io/idRrcMU04X/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1748624187091",
       count: "80M+",
     },
     {
       name: "Greenhouse",
-      logo: "/placeholder.svg?height=40&width=40&text=GH",
+      logo: "https://cdn.brandfetch.io/idr54tWwj4/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1696624241411",
       count: "ATS",
     },
     {
       name: "Lever",
-      logo: "/placeholder.svg?height=40&width=40&text=Lever",
+      logo: "https://www.lever.co/wp-content/uploads/2022/09/Lever_Employ_Logo_Horizontal_Turquoise_Black.png",
       count: "ATS",
     },
   ];
@@ -133,7 +133,7 @@ export default function SourcingPage() {
                           <img
                             src={platform.logo || "/placeholder.svg"}
                             alt={platform.name}
-                            className="w-8 h-8 rounded"
+                            className="w-8 h-8 rounded object-contain"
                           />
                           <span className="font-medium text-gray-900 dark:text-white">
                             {platform.name}
@@ -228,7 +228,7 @@ export default function SourcingPage() {
 
           {/* LinkedIn Exclusive */}
           <ScrollReveal>
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-blue-400 to-blue-600 rounded-3xl p-12 text-center text-white">
               <div className="max-w-4xl mx-auto">
                 <h3 className="text-3xl font-bold mb-6">
                   🚀 Exclusive LinkedIn Integration
