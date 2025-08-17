@@ -73,8 +73,6 @@ export default function BlogPage() {
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
               categories={categories}
-              isFilterOpen={isFilterOpen}
-              setIsFilterOpen={setIsFilterOpen}
             />
           </ScrollReveal>
         </div>

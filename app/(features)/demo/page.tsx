@@ -113,19 +113,19 @@ export default function DemoPage() {
       </section>
 
       {/* Interactive Demo Player */}
-      <section className="py-24 bg-white dark:bg-gray-900">
+      <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal>
-            <div className="bg-gray-900 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-2xl">
               {/* Demo Header */}
-              <div className="bg-gray-800 dark:bg-gray-700 px-6 py-4 flex items-center justify-between">
+              <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="flex space-x-2">
                     <div className="w-3 h-3 bg-red-400 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                   </div>
-                  <span className="text-gray-300 text-sm">
+                  <span className="text-gray-600 text-sm">
                     Leelu.ai Demo - Software Engineer Position
                   </span>
                 </div>
@@ -153,7 +153,7 @@ export default function DemoPage() {
                 <div className="grid lg:grid-cols-2 gap-8">
                   {/* Demo Steps */}
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-white mb-6">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-6">
                       Demo Timeline
                     </h3>
                     {demoSteps.map((step, index) => (
@@ -161,8 +161,8 @@ export default function DemoPage() {
                         key={index}
                         className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer ${
                           currentStep === index
-                            ? "border-blue-400 bg-blue-900/20"
-                            : "border-gray-600 hover:border-gray-500"
+                            ? "border-blue-400 bg-blue-100"
+                            : "border-gray-300 hover:border-gray-400"
                         }`}
                         onClick={() => setCurrentStep(index)}
                       >
@@ -175,13 +175,13 @@ export default function DemoPage() {
                             </span>
                           </div>
                           <div className="flex-1">
-                            <h4 className="text-white font-semibold mb-1">
+                            <h4 className="text-gray-800 font-semibold mb-1">
                               {step.title}
                             </h4>
-                            <p className="text-gray-400 text-sm">
+                            <p className="text-gray-600 text-sm">
                               {step.description}
                             </p>
-                            <Badge className="mt-2 bg-gray-700 text-gray-300">
+                            <Badge className="mt-2 bg-gray-200 text-gray-700">
                               {step.duration}
                             </Badge>
                           </div>
@@ -194,12 +194,12 @@ export default function DemoPage() {
                   </div>
 
                   {/* Demo Visualization */}
-                  <div className="bg-gray-800 rounded-2xl p-6">
+                  <div className="bg-gray-100 rounded-2xl p-6">
                     <div className="text-center mb-6">
-                      <h4 className="text-xl font-bold text-white mb-2">
+                      <h4 className="text-xl font-bold text-gray-800 mb-2">
                         {demoSteps[currentStep].title}
                       </h4>
-                      <p className="text-gray-400">
+                      <p className="text-gray-600">
                         {demoSteps[currentStep].description}
                       </p>
                     </div>
@@ -207,17 +207,17 @@ export default function DemoPage() {
                     {/* Dynamic Demo Content Based on Current Step */}
                     {currentStep === 0 && (
                       <div className="space-y-4">
-                        <div className="bg-gray-700 rounded-lg p-4">
-                          <div className="text-green-400 text-sm mb-2">
+                        <div className="bg-gray-200 rounded-lg p-4">
+                          <div className="text-gray-800 text-sm mb-2">
                             ✓ Job Title: Senior Software Engineer
                           </div>
-                          <div className="text-green-400 text-sm mb-2">
+                          <div className="text-gray-800 text-sm mb-2">
                             ✓ Skills: React, Node.js, TypeScript
                           </div>
-                          <div className="text-green-400 text-sm mb-2">
+                          <div className="text-gray-800 text-sm mb-2">
                             ✓ Experience: 5+ years
                           </div>
-                          <div className="text-green-400 text-sm">
+                          <div className="text-gray-800 text-sm">
                             ✓ Location: Remote/San Francisco
                           </div>
                         </div>
@@ -226,17 +226,17 @@ export default function DemoPage() {
 
                     {currentStep === 1 && (
                       <div className="space-y-4">
-                        <div className="text-blue-400 text-sm animate-pulse">
+                        <div className="text-blue-900 text-sm animate-pulse">
                           🔍 Searching LinkedIn...
                         </div>
-                        <div className="text-blue-400 text-sm animate-pulse">
+                        <div className="text-blue-900 text-sm animate-pulse">
                           🔍 Searching Indeed...
                         </div>
-                        <div className="text-blue-400 text-sm animate-pulse">
+                        <div className="text-blue-900 text-sm animate-pulse">
                           🔍 Searching GitHub...
                         </div>
-                        <div className="bg-gray-700 rounded-lg p-4 mt-4">
-                          <div className="text-green-400 font-semibold">
+                        <div className="bg-gray-200 rounded-lg p-4 mt-4">
+                          <div className="text-green-900 font-semibold">
                             247 candidates found
                           </div>
                         </div>
@@ -245,19 +245,19 @@ export default function DemoPage() {
 
                     {currentStep === 2 && (
                       <div className="space-y-4">
-                        <div className="bg-gray-700 rounded-lg p-4">
-                          <div className="text-yellow-400 text-sm mb-2">
+                        <div className="bg-gray-200 rounded-lg p-4">
+                          <div className="text-yellow-600 text-sm mb-2">
                             📧 Sending personalized emails...
                           </div>
-                          <div className="text-gray-300 text-xs">
+                          <div className="text-gray-700 text-xs">
                             "Hi Sarah, I noticed your React expertise at
                             TechCorp..."
                           </div>
                         </div>
-                        <div className="text-green-400 text-sm">
+                        <div className="text-green-900 text-sm">
                           ✓ 89 messages sent
                         </div>
-                        <div className="text-green-400 text-sm">
+                        <div className="text-green-900 text-sm">
                           ✓ 42 responses received
                         </div>
                       </div>
@@ -265,22 +265,22 @@ export default function DemoPage() {
 
                     {currentStep === 3 && (
                       <div className="space-y-4">
-                        <div className="bg-gray-700 rounded-lg p-4">
-                          <div className="text-green-400 text-sm mb-2">
+                        <div className="bg-gray-200 rounded-lg p-4">
+                          <div className="text-gray-800 text-sm mb-2">
                             📅 Interview scheduled with Sarah Chen
                           </div>
-                          <div className="text-green-400 text-sm mb-2">
+                          <div className="text-gray-800 text-sm mb-2">
                             📅 Interview scheduled with Mike Rodriguez
                           </div>
-                          <div className="text-green-400 text-sm">
+                          <div className="text-gray-800 text-sm">
                             📅 Interview scheduled with Lisa Wang
                           </div>
                         </div>
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-green-400">
+                          <div className="text-2xl font-bold text-green-900">
                             12 interviews booked
                           </div>
-                          <div className="text-gray-400 text-sm">
+                          <div className="text-gray-600 text-sm">
                             in 24 hours
                           </div>
                         </div>
