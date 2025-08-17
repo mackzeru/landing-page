@@ -229,7 +229,7 @@ export default function LeeluAI() {
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
             <ScrollReveal>
               <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl border border-white/50 dark:border-gray-700/50">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 leading-tight">
+                <h2 className="lg:text-3xl  sm:text-xl  font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 leading-tight">
                   Ready to transform your hiring?
                 </h2>
                 <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -118,8 +117,8 @@ const Navigation = () => {
                   href="/use-cases"
                   className={`font-medium cursor-pointer transition-colors nav-link ${
                     isActiveLink("/use-cases")
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                      ? "text-blue-600 dark:text-blue-400 hover:text-blue-600"
+                      : "text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-all group-hover:w-full duration-300 dark:hover:text-white"
                   }`}
                 >
                   Use Cases
@@ -167,6 +166,12 @@ const Navigation = () => {
                   }`}
                 >
                   Contact
+                </Link>
+                <Link
+                  href="/#pricing"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+                >
+                  Pricing
                 </Link>
 
                 <div className="flex items-center">{/* <ThemeToggle /> */}</div>
@@ -219,6 +224,12 @@ const Navigation = () => {
                   >
                     Contact
                   </Link>
+                  <Link
+                    href="/pricing"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+                  >
+                    Pricing
+                  </Link>
                 </nav>
               </div>
             )}
@@ -226,9 +237,12 @@ const Navigation = () => {
             {/* CTA Button & Mobile Menu */}
             <div className="flex items-center space-x-4">
               <div className="lg:hidden">{/* <ThemeToggle /> */}</div>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-full font-medium transition-all hover:scale-105">
+              <Link
+                href="/#pricing"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-full font-medium transition-all hover:scale-105"
+              >
                 Get Started
-              </Button>
+              </Link>
 
               {/* Mobile Menu Button */}
               <button

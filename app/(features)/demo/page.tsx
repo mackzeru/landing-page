@@ -13,43 +13,18 @@ import {
   MessageSquare,
   Calendar,
   Zap,
+  X,
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import { demoSteps } from "./demo";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function DemoPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-
-  const demoSteps = [
-    {
-      title: "Setup Your Job",
-      description:
-        "Configure job requirements and AI preferences in under 2 minutes",
-      duration: "0-2 min",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      title: "AI Starts Sourcing",
-      description: "Watch as AI searches 10+ platforms simultaneously",
-      duration: "2-6 min",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      title: "Candidate Outreach",
-      description: "AI crafts and sends personalized messages automatically",
-      duration: "6-12 min",
-      color: "from-green-500 to-green-600",
-    },
-    {
-      title: "Interviews Booked",
-      description:
-        "Qualified candidates are automatically scheduled for interviews",
-      duration: "12-24 min",
-      color: "from-orange-500 to-orange-600",
-    },
-  ];
-
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <PageLayout>
       {/* Hero Section */}
@@ -97,20 +72,57 @@ export default function DemoPage() {
               to scheduled interviews in just 24 hours. No signup required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold text-lg">
+              <Button
+                onClick={() => setIsDialogOpen(true)}
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold text-lg"
+              >
                 Start Interactive Demo
                 <Play className="h-5 w-5 ml-2" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-gray-300 dark:border-gray-600 px-8 py-3 rounded-full font-semibold text-lg bg-transparent"
-              >
-                Schedule Live Demo
               </Button>
             </div>
           </ScrollReveal>
         </div>
       </section>
+      {/* Modal Overlay */}
+      {isDialogOpen && (
+        <div
+          className={cn(
+            "fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4",
+            "bg-white/60 backdrop-blur-sm",
+            "animate-in fade-in-0 duration-300"
+          )}
+          onClick={() => setIsDialogOpen(false)}
+        >
+          {/* Modal Content */}
+          <div
+            className={cn(
+              "relative bg-white rounded-lg sm:rounded-2xl overflow-hidden shadow-2xl border",
+              "w-full max-w-xs sm:max-w-lg md:max-w-3xl lg:max-w-5xl max-h-[90vh]",
+              "animate-in zoom-in-95 duration-300"
+            )}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsDialogOpen(false)}
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-200 backdrop-blur-sm hover:scale-110 touch-manipulation"
+            >
+              <X className="size-5 sm:size-6" />
+            </button>
+
+            {/* Video */}
+            <video
+              className="w-full object-contain border-0 outline-none"
+              autoPlay
+              loop
+              controls
+              playsInline
+            >
+              <source src="/demo.mp4" type="video/mp4"></source>
+            </video>
+          </div>
+        </div>
+      )}
 
       {/* Interactive Demo Player */}
       <section className="py-24 bg-white">
@@ -125,19 +137,17 @@ export default function DemoPage() {
                     <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                   </div>
-                  <span className="text-gray-600 text-sm">
-                    Leelu.ai Demo - Software Engineer Position
-                  </span>
+                  <span className="text-gray-600 block text-sm"></span>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 sm:space-x-2">
                   <button
                     onClick={() => setIsPlaying(!isPlaying)}
                     className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
                   >
                     {isPlaying ? (
-                      <Pause className="h-4 w-4" />
+                      <Pause className="h-4 w-4 sm:h-2 sm:w-2" />
                     ) : (
-                      <Play className="h-4 w-4" />
+                      <Play className="h-4 w-4 sm:h-2 sm:w-2" />
                     )}
                     <span>{isPlaying ? "Pause" : "Play"}</span>
                   </button>
@@ -293,7 +303,6 @@ export default function DemoPage() {
           </ScrollReveal>
         </div>
       </section>
-
       {/* Key Features Showcase */}
       <section className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-6">
@@ -374,17 +383,15 @@ export default function DemoPage() {
               see real results
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold text-lg">
-                Schedule Live Demo
-                <Calendar className="h-5 w-5 ml-2" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-8 py-3 rounded-full font-semibold text-lg bg-transparent"
-              >
-                Start Free Trial
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Button>
+              <>
+                <Link
+                  href="/#pricing"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-3 py-1 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-lg active:scale-95"
+                >
+                  Start Free Trial
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </>
             </div>
           </ScrollReveal>
         </div>

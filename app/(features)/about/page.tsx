@@ -6,99 +6,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Users, Target, Zap, Heart, ArrowRight } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import Link from "next/link";
+import Timeline from "./component/Timeline";
+import Team from "./component/Team";
+import { team, values } from "./demo";
 
 export default function AboutPage() {
-  const team = [
-    {
-      name: "Sarah Chen",
-      role: "CEO & Co-Founder",
-      bio: "Former VP of Engineering at LinkedIn, led the team that built LinkedIn Recruiter's AI features.",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
-      linkedin: "#",
-    },
-    {
-      name: "Michael Rodriguez",
-      role: "CTO & Co-Founder",
-      bio: "Ex-Google AI researcher with 10+ years in machine learning and natural language processing.",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-      linkedin: "#",
-    },
-    {
-      name: "Emily Watson",
-      role: "Head of Product",
-      bio: "Former Product Lead at Greenhouse, passionate about creating intuitive recruiting experiences.",
-      image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-      linkedin: "#",
-    },
-    {
-      name: "David Kim",
-      role: "Head of AI",
-      bio: "PhD in Computer Science from Stanford, specializes in conversational AI and automation.",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-      linkedin: "#",
-    },
-  ];
-
-  const values = [
-    {
-      icon: Target,
-      title: "Mission-Driven",
-      description:
-        "We believe great hiring should be accessible to every company, regardless of size or budget.",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: Zap,
-      title: "Innovation First",
-      description:
-        "We push the boundaries of what's possible with AI to solve real recruiting challenges.",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      icon: Heart,
-      title: "Human-Centered",
-      description:
-        "Technology should enhance human potential, not replace it. We build tools that empower people.",
-      color: "from-green-500 to-green-600",
-    },
-    {
-      icon: Users,
-      title: "Inclusive by Design",
-      description:
-        "We're committed to building diverse teams and reducing bias in the hiring process.",
-      color: "from-orange-500 to-orange-600",
-    },
-  ];
-
-  const milestones = [
-    {
-      year: "2022",
-      title: "Company Founded",
-      description: "Started with a vision to democratize AI-powered recruiting",
-    },
-    {
-      year: "2023",
-      title: "Series A Funding",
-      description:
-        "Raised $15M to accelerate product development and team growth",
-    },
-    {
-      year: "2023",
-      title: "LinkedIn Partnership",
-      description: "Became official LinkedIn Recruiter API partner",
-    },
-    {
-      year: "2024",
-      title: "2,000+ Customers",
-      description:
-        "Helping thousands of companies transform their hiring process",
-    },
-  ];
-
   return (
     <PageLayout>
       {/* Hero Section */}
@@ -275,105 +188,13 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-24 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="text-center mb-20">
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Meet Our Team
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                The passionate people building the future of recruiting
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <ScrollReveal key={index} delay={index * 100}>
-                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-                  <CardContent className="p-8">
-                    <div className="relative mb-6">
-                      <img
-                        src={member.image || "/placeholder.svg"}
-                        alt={member.name}
-                        className="w-24 h-24 rounded-full mx-auto object-cover"
-                      />
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs">in</span>
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                      {member.name}
-                    </h3>
-                    <div className="text-blue-600 dark:text-blue-400 font-semibold mb-4">
-                      {member.role}
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      {member.bio}
-                    </p>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* <Team team={team} /> */}
 
       {/* Timeline */}
-      <section className="py-24 bg-blue-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="text-center mb-20">
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Our Journey
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300">
-                Key milestones in our mission to democratize AI recruiting
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200 dark:bg-blue-800"></div>
-
-            {milestones.map((milestone, index) => (
-              <ScrollReveal key={index} delay={index * 200}>
-                <div
-                  className={`flex items-center mb-12 ${
-                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                  }`}
-                >
-                  <div
-                    className={`w-1/2 ${
-                      index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"
-                    }`}
-                  >
-                    <Card className="border-0 shadow-lg">
-                      <CardContent className="p-6">
-                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                          {milestone.year}
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                          {milestone.title}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          {milestone.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  <div className="relative z-10 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-gray-800"></div>
-                  <div className="w-1/2"></div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* <Timeline milestones={milestones} /> */}
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-blue-600 to-purple-800">
+      <section className="py-24 bg-gradient-to-r from-blue-500 to-purple-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="text-4xl font-bold text-white mb-6">
@@ -384,15 +205,15 @@ export default function AboutPage() {
               our mission, we'd love to hear from you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold text-lg">
-                Start Free Trial
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-full font-semibold text-lg bg-transparent"
-              >
-                View Careers
-              </Button>
+              <>
+                <Link
+                  href="/#pricing"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-3 py-1 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-lg active:scale-95"
+                >
+                  Start Free Trial
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </>
             </div>
           </ScrollReveal>
         </div>

@@ -17,41 +17,10 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import { platforms } from "../demo";
+import Link from "next/link";
 
 export default function SourcingPage() {
-  const platforms = [
-    {
-      name: "LinkedIn",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
-      count: "500M+",
-    },
-    {
-      name: "Indeed",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Indeed_logo.svg",
-      count: "250M+",
-    },
-    {
-      name: "Monster",
-      logo: "https://cdn.brandfetch.io/idRrcMU04X/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1748624187091",
-      count: "100M+",
-    },
-    {
-      name: "CareerBuilder",
-      logo: "https://cdn.brandfetch.io/idRrcMU04X/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1748624187091",
-      count: "80M+",
-    },
-    {
-      name: "Greenhouse",
-      logo: "https://cdn.brandfetch.io/idr54tWwj4/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1696624241411",
-      count: "ATS",
-    },
-    {
-      name: "Lever",
-      logo: "https://www.lever.co/wp-content/uploads/2022/09/Lever_Employ_Logo_Horizontal_Turquoise_Black.png",
-      count: "ATS",
-    },
-  ];
-
   return (
     <PageLayout>
       {/* Hero Section */}
@@ -329,15 +298,15 @@ export default function SourcingPage() {
               simultaneous multi-platform search
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold text-lg">
-                Start Free Trial
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-purple-600 px-8 py-3 rounded-full font-semibold text-lg bg-transparent"
-              >
-                Schedule Demo
-              </Button>
+              <>
+                <Link
+                  href="/#pricing"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-3 py-1 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-lg active:scale-95"
+                >
+                  Start Free Trial
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </>
             </div>
           </ScrollReveal>
         </div>

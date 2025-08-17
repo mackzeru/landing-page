@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
-import Newsletter from "./Newsletter";
-
 // Types
 type FooterLink = {
   label: string;
@@ -58,7 +56,10 @@ const FooterLinksSection = ({ title, links }: FooterSection) => (
           >
             <span className="relative">
               {link.label}
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+              <span
+                className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 
+              "
+              ></span>
             </span>
           </a>
         </li>
@@ -126,7 +127,7 @@ const BottomBar = () => (
 );
 
 // Background Elements Component
-const BackgroundElements = () => (
+export const BackgroundElements = () => (
   <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
     <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-100 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/30 rounded-tl-full transform translate-x-48 translate-y-48"></div>
     <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-tr-full transform -translate-x-40 translate-y-40"></div>
@@ -160,7 +161,7 @@ const BackgroundElements = () => (
 const Footer = () => {
   // 🌐 Marketing & Product Pages
   const marketingProductLinks: FooterLink[] = [
-    { label: "Homepage", href: "/" },
+    { label: "Home", href: "/" },
     { label: "Copilot", href: "/features/copilot" },
     { label: "Sourcing", href: "/features/sourcing" },
     { label: "Use Cases", href: "/use-cases" },
@@ -267,6 +268,7 @@ const Footer = () => {
 
         <BottomBar />
       </div>
+      <BackgroundElements />
     </footer>
   );
 };

@@ -20,9 +20,13 @@ import {
   HeadphonesIcon,
   Video,
   CheckCircle,
+  ArrowRight,
 } from "lucide-react";
 import { useState } from "react";
 import { PageLayout } from "@/components/custom/page-layou";
+import { contactMethods, officeLocations, supportCategories } from "./demo";
+import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import Link from "next/link";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -34,78 +38,6 @@ export default function ContactPage() {
     priority: "medium",
     category: "general",
   });
-
-  const contactMethods = [
-    {
-      icon: MessageCircle,
-      title: "Live Chat",
-      description: "Get instant help from our support team",
-      availability: "24/7 Available",
-      action: "Start Chat",
-      color: "green",
-      response: "< 2 minutes",
-    },
-    {
-      icon: Mail,
-      title: "Email Support",
-      description: "Send us a detailed message",
-      availability: "Response within 4 hours",
-      action: "Send Email",
-      color: "blue",
-      response: "< 4 hours",
-    },
-    {
-      icon: Phone,
-      title: "Phone Support",
-      description: "Speak directly with our experts",
-      availability: "Mon-Fri, 9AM-6PM PST",
-      action: "Call Now",
-      color: "purple",
-      response: "Immediate",
-    },
-    {
-      icon: Video,
-      title: "Video Call",
-      description: "Schedule a screen-sharing session",
-      availability: "By appointment",
-      action: "Book Call",
-      color: "indigo",
-      response: "Same day",
-    },
-  ];
-
-  const supportCategories = [
-    { id: "general", label: "General Inquiry", icon: MessageCircle },
-    { id: "technical", label: "Technical Support", icon: Bug },
-    { id: "billing", label: "Billing & Pricing", icon: CreditCard },
-    { id: "feature", label: "Feature Request", icon: Lightbulb },
-    { id: "demo", label: "Product Demo", icon: Video },
-    { id: "partnership", label: "Partnership", icon: Users },
-  ];
-
-  const officeLocations = [
-    {
-      city: "San Francisco",
-      address: "123 Market Street, Suite 400",
-      zipcode: "San Francisco, CA 94105",
-      phone: "+1 (555) 123-4567",
-      timezone: "PST",
-    },
-    {
-      city: "New York",
-      address: "456 Broadway, Floor 12",
-      zipcode: "New York, NY 10013",
-      phone: "+1 (555) 987-6543",
-      timezone: "EST",
-    },
-    {
-      city: "London",
-      address: "789 Oxford Street",
-      zipcode: "London W1C 1JN, UK",
-      phone: "+44 20 7123 4567",
-      timezone: "GMT",
-    },
-  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -329,35 +261,6 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                      Priority Level
-                    </label>
-                    <div className="flex space-x-4">
-                      {[
-                        { id: "low", label: "Low", color: "green" },
-                        { id: "medium", label: "Medium", color: "yellow" },
-                        { id: "high", label: "High", color: "orange" },
-                        { id: "urgent", label: "Urgent", color: "red" },
-                      ].map((priority) => (
-                        <button
-                          key={priority.id}
-                          type="button"
-                          onClick={() =>
-                            handleInputChange("priority", priority.id)
-                          }
-                          className={`px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
-                            formData.priority === priority.id
-                              ? `border-${priority.color}-500 bg-${priority.color}-50 dark:bg-${priority.color}-900/20 text-${priority.color}-700 dark:text-${priority.color}-300`
-                              : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600"
-                          }`}
-                        >
-                          {priority.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
                   <Button
                     type="submit"
                     size="lg"
@@ -414,7 +317,7 @@ export default function ContactPage() {
 
                 {/* Quick Stats */}
                 <div className="mt-12 grid grid-cols-2 gap-6">
-                  <Card className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0">
+                  <Card className="bg-gradient-to-r from-green-700 to-emerald-900 text-white border-0">
                     <CardContent className="p-6 text-center">
                       <div className="text-3xl font-bold mb-2">99.9%</div>
                       <div className="text-green-100">Uptime</div>
@@ -479,33 +382,29 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-
-        {/* Emergency Contact */}
-        <section className="py-20 px-8 bg-gradient-to-r from-red-600 to-orange-600">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-white mb-6">
-              Emergency Support
-            </h2>
-            <p className="text-xl text-red-100 mb-8 leading-relaxed">
-              For critical issues affecting your production environment, contact
-              our emergency support line immediately.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-xl"
-              >
-                Call Emergency Line
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-red-600 px-8 py-4 text-lg font-semibold rounded-xl bg-transparent"
-              >
-                Priority Email
-              </Button>
-            </div>
+        {/* Live Demo CTA */}
+        <section className="py-24 bg-gradient-to-r from-indigo-600 to-purple-600">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <ScrollReveal>
+              <h2 className="text-4xl font-bold text-white mb-6">
+                Ready to See Your Own Data?
+              </h2>
+              <p className="text-xl text-indigo-100 mb-8 leading-relaxed">
+                Schedule a personalized demo with your actual job requirements
+                and see real results
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <>
+                  <Link
+                    href="/#pricing"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-3 py-1 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-lg active:scale-95"
+                  >
+                    Start Free Trial
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </div>
