@@ -142,7 +142,7 @@ const Navigation = () => {
                       <h3 className="text-lg font-semibold mb-4 text-blue-600 dark:text-blue-400">
                         Industries
                       </h3>
-                      <ul className="grid grid-cols-2 gap-2">
+                      <ul className="grid grid-cols-1 gap-2">
                         {industries.map((item, index) => (
                           <li key={index}>
                             <Link

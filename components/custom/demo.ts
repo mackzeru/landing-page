@@ -13,6 +13,7 @@ import {
   PlugZap,
   Code2,
   Network,
+  Users2,
 } from "lucide-react";
 const featuresDropdown = [
   {
@@ -32,89 +33,99 @@ const featuresDropdown = [
 const industries = [
   {
     title: "Tech/IT",
-    href: "/solutions#tech",
+    href: "/solutions/industries/tech",
     description: "Recruit tech talent through AI-driven sourcing",
     icon: Code2,
     color: "text-blue-500",
   },
   {
     title: "Healthcare",
-    href: "/solutions#healthcare",
+    href: "/solutions/industries/healthcare",
     description: "Match healthcare professionals to critical roles",
     icon: Stethoscope,
     color: "text-red-500",
   },
   {
-    title: "RPO/Staffing",
-    href: "/solutions#rpo-staffing",
-    description: "Automate talent pipelines with tailored outreach",
-    icon: Network,
-    color: "text-green-500",
-  },
-  {
-    title: "Security & Defense",
-    href: "/solutions#security-defense",
-    description: "Build secure teams with intelligent pools",
-    icon: Shield,
-    color: "text-gray-500",
-  },
-  {
-    title: "Education",
-    href: "/solutions#education",
-    description: "Discover top educators with intelligent matching",
-    icon: School,
-    color: "text-yellow-500",
-  },
-  {
-    title: "Financial",
-    href: "/solutions#finance",
-    description: "Analyze and optimize finance recruitment strategies",
-    icon: Banknote,
-    color: "text-emerald-500",
-  },
-  {
     title: "Manufacturing",
-    href: "/solutions#manufacturing",
+    href: "/solutions/industries/manufacturing",
     description: "Streamline hiring processes for skilled manufacturing",
     icon: Factory,
     color: "text-orange-500",
   },
   {
-    title: "Energy/Utilities",
-    href: "/solutions#energy-utilities",
-    description: "Engage energy experts with precise matching",
-    icon: PlugZap,
-    color: "text-indigo-500",
+    title: "Financial",
+    href: "/solutions/industries/finance",
+    description: "Analyze and optimize finance recruitment strategies",
+    icon: Banknote,
+    color: "text-emerald-500",
   },
+  // {
+  //   title: "RPO/Staffing",
+  //   href: "/solutions/industries/rpo-staffing",
+  //   description: "Automate talent pipelines with tailored outreach",
+  //   icon: Network,
+  //   color: "text-green-500",
+  // },
+  // {
+  //   title: "Security & Defense",
+  //   href: "/solutions/industries/security-defense",
+  //   description: "Build secure teams with intelligent pools",
+  //   icon: Shield,
+  //   color: "text-gray-500",
+  // },
+  // {
+  //   title: "Education",
+  //   href: "/solutions/industries/education",
+  //   description: "Discover top educators with intelligent matching",
+  //   icon: School,
+  //   color: "text-yellow-500",
+  // },
+
+  // {
+  //   title: "Energy/Utilities",
+  //   href: "/solutions/industries/energy-utilities",
+  //   description: "Engage energy experts with precise matching",
+  //   icon: PlugZap,
+  //   color: "text-indigo-500",
+  // },
 ];
 
 const stakeholders = [
   {
     title: "Talent Acquisition Leader",
-    href: "/solutions#talent-acquisition",
+    href: "/solutions/stakeholder/talent-acquisition",
     description: "Optimize team performance with AI-driven recruiting",
     icon: Users,
     color: "text-blue-500",
   },
   {
     title: "Recruiter/Sourcer",
-    href: "/solutions#recruiter",
+    href: "/solutions/stakeholder/recruiter",
     description: "Discover and engage top talent efficiently",
     icon: UserCog,
     color: "text-green-500",
   },
   {
     title: "Hiring Manager",
-    href: "/solutions#hiring-manager",
+    href: "/solutions/stakeholder/hiring-manager",
     description: "Hire with confidence using AI precision",
     icon: Briefcase,
     color: "text-yellow-500",
   },
   {
     title: "Talent Operations",
-    href: "/solutions#talent-ops",
+    href: "/solutions/stakeholder/talent-operations",
+
     description: "Streamline operations with centralized AI insights",
     icon: BarChart3,
+    color: "text-purple-500",
+  },
+  // people-operations
+  {
+    title: "People Operations",
+    href: "/solutions/stakeholder/people-operations",
+    description: "Streamline operations with centralized AI insights",
+    icon: Users2, // Changed to Users2 icon which better represents people/team operations
     color: "text-purple-500",
   },
 ];
