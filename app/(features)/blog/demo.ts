@@ -4,8 +4,7 @@ export const featuredPost: FeaturedPost = {
   id: "future-ai-recruiting-2024",
   slug: "future-ai-recruiting-2024-trends",
   title: "The Future of AI in Recruiting: 2024 Trends and Predictions",
-  excerpt:
-    "Discover how artificial intelligence is reshaping the recruiting landscape and what it means for talent acquisition teams in 2024 and beyond.",
+  excerpt: "Discover how artificial intelligence is reshaping the recruiting landscape and what it means for talent acquisition teams in 2024 and beyond.",
   author: {
     name: "Sarah Chen",
     title: "Head of Product, Leelu.ai",
@@ -23,6 +22,7 @@ export const featuredPost: FeaturedPost = {
     <p>The recruiting industry is experiencing a seismic shift...</p>
     <!-- rest of the content -->
   `,
+  primary_tag: undefined
 };
 export const blogPosts: BlogPost[] = [
   {

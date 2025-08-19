@@ -19,6 +19,11 @@ export interface BlogPost {
   image?: string;
   featured?: boolean;
   slug?: string;
+  feature_image?: string;
+  primary_tag?:{
+    id: string ;
+    name: string;
+  } 
 }
 
 export interface FeaturedPost extends BlogPost {
