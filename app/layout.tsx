@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/theme/theme-provider";
 import { CookieProvider } from "@/context/CookieContext";
+import { CookieBanner } from "./(features)/cookies/_component/CookieBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <CookieProvider>{children}</CookieProvider>
+          <CookieProvider>
+            {children}
+            <CookieBanner />
+          </CookieProvider>
         </ThemeProvider>
       </body>
     </html>

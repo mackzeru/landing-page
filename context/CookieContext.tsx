@@ -1,4 +1,3 @@
-// context/CookieContext.tsx
 "use client";
 
 import {
@@ -40,17 +39,21 @@ export const CookieProvider = ({ children }: { children: ReactNode }) => {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const savedPreferences = localStorage.getItem("cookiePreferences");
-    if (savedPreferences) {
-      setPreferences(JSON.parse(savedPreferences));
-    } else {
-      setShowBanner(true);
+    // Check if we're running in the browser
+    if (typeof window !== "undefined") {
+      const savedPreferences = localStorage.getItem("cookiePreferences");
+      if (savedPreferences) {
+        setPreferences(JSON.parse(savedPreferences));
+      } else {
+        // Only show banner if no preferences are saved (first visit)
+        setShowBanner(true);
+      }
+      setInitialized(true);
     }
-    setInitialized(true);
   }, []);
 
   useEffect(() => {
-    if (initialized) {
+    if (initialized && typeof window !== "undefined") {
       localStorage.setItem("cookiePreferences", JSON.stringify(preferences));
     }
   }, [preferences, initialized]);
@@ -59,7 +62,7 @@ export const CookieProvider = ({ children }: { children: ReactNode }) => {
     setPreferences((prev) => ({
       ...prev,
       ...newPrefs,
-      necessary: true,
+      necessary: true, // Always keep necessary cookies enabled
     }));
   };
 

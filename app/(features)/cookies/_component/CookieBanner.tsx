@@ -1,3 +1,4 @@
+// components/CookieBanner.tsx
 "use client";
 
 import { useCookieContext } from "@/context/CookieContext";
@@ -5,8 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
 
 export const CookieBanner = () => {
-  const { preferences, updatePreferences, showBanner, setShowBanner } =
-    useCookieContext();
+  const {
+    preferences,
+    updatePreferences,
+    showBanner,
+    setShowBanner,
+    setShowToast,
+  } = useCookieContext();
 
   const acceptAll = () => {
     updatePreferences({
@@ -15,6 +21,7 @@ export const CookieBanner = () => {
       functional: true,
     });
     setShowBanner(false);
+    setShowToast(true);
   };
 
   const rejectAll = () => {
@@ -24,9 +31,18 @@ export const CookieBanner = () => {
       functional: false,
     });
     setShowBanner(false);
+    setShowToast(true);
   };
 
-  if (!showBanner) return null;
+  // Don't render during SSR
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  // Don't render if banner shouldn't be shown
+  if (!showBanner) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-2xl z-50 animate-slide-up">
@@ -55,7 +71,11 @@ export const CookieBanner = () => {
             </Button>
             <Button
               variant="outline"
-              onClick={() => setShowBanner(false)}
+              onClick={() => {
+                setShowBanner(false);
+                // Optionally navigate to cookie policy page
+                // router.push('/cookie-policy');
+              }}
               className="w-full sm:w-auto"
             >
               Customize
