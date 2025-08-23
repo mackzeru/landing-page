@@ -13,49 +13,58 @@ export function ArticleCard({ post, className = "" }: ArticleCardProps) {
   return (
     <Link href={`/blog/${post.slug}`}>
       <Card
-        className={`border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden h-full cursor-pointer ${className}`}
+        className={`group overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-transform transform hover:scale-105 cursor-pointer ${className}`}
       >
-        <div className="relative">
+        {/* Image */}
+        <div className="relative h-52 w-full">
           <img
             src={post.feature_image || "/placeholder.svg"}
             alt={post.title}
-            className="w-full h-48 object-cover"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute top-4 left-4">
-            <Badge className="bg-white/90 text-gray-700 text-xs">
-              {post.primary_tag?.name || "Category"}
+          {post.featured && (
+            <Badge className="absolute top-4 left-4 bg-white/90 text-gray-800 dark:text-gray-900 text-xs font-semibold shadow-sm hover:text-white">
+              {post.primary_tag.name?.replace("tag:", "")}
             </Badge>
-          </div>
+          )}
         </div>
-        <CardContent className="p-6 flex flex-col h-full">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
-            {post.title}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed flex-grow">
-            {post.excerpt}
-          </p>
-          <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+
+        {/* Content */}
+        <CardContent className="p-5 flex flex-col h-full justify-between">
+          <div>
+            <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
+              {post.title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+              {post.excerpt}
+            </p>
+          </div>
+
+          {/* Author & Meta */}
+          <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100 dark:border-gray-700">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
-                <span className="text-gray-600 dark:text-gray-300 font-semibold text-xs">
-                  {post.primary_author.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+              <div className="w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 font-semibold  text-purple-600 dark:text-purple-400 font-semibold text-sm ">
+                {post.primary_author.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-gray-900 dark:text-white text-sm font-medium">
+                  {post.primary_author.name}
+                </span>
+                <span className="text-gray-500 dark:text-gray-400 text-xs">
+                  {new Date(post.published_at).toLocaleDateString(undefined, {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </span>
               </div>
-              <div>
-                <div className="font-medium text-gray-900 dark:text-white text-sm">
-                  {post.primary_author.name}
-                </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">
-                  {new Date(post.published_at).toLocaleDateString()}
-                </div>
-              </div>
             </div>
-            <div className="flex items-center text-gray-500 dark:text-gray-400">
-              <Clock className="h-3 w-3 mr-1" />
-              <span className="text-xs">{post.reading_time} min</span>
+            <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs space-x-1">
+              <Clock className="w-3 h-3" />
+              <span>{post.reading_time || 3} min read</span>
             </div>
           </div>
         </CardContent>

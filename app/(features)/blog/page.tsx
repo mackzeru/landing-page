@@ -1,3 +1,4 @@
+
 "use client";
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -7,75 +8,96 @@ import Newsletter from "@/components/custom/Newsletter";
 import { SearchFilter } from "./_component/SearchFilter";
 import FeaturedArticle from "./_component/FeaturedArticle";
 import TagsFilterSection from "./_component/TagsFilterSection";
-import { getPosts } from "@/services/content-api";
+import { getPosts, getAllTags } from "@/services/content-api";
 import BlogGrid from "./_component/BlogGrid";
 import { Post } from "@/app/_types/ghost";
-
+import { useDebounce } from "@/hooks/custom/use-debounce";
+const limit = 8;
 export default function BlogPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState("All");
   const [posts, setPosts] = useState<Post[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
-  const [tags, setTags] = useState<string[]>(["All"]);
+  const [tags, setTags] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const debouncedSearch = useDebounce(searchQuery, 500);
+  // Fetch all tags dynamically, optional prefix for category
+  const fetchAllTags = async (prefix?: string) => {
+    try {
+      const ghostTags: any = await getAllTags(prefix); // pass prefix if needed
+      // Get unique tag names and include "All"
+      const uniqueTagNames = new Set<string>(["All"]);
+      ghostTags.forEach((tag: any) => {
+        uniqueTagNames.add(tag.name);
+      });
+      setTags(Array.from(uniqueTagNames));
+    } catch (error) {
+      console.error("Failed to fetch tags:", error);
+    }
+  };
 
-  const resetSearch = () => setSearchQuery("");
-  const resetFilters = () => setSelectedTag("All");
+  // Fetch posts based on selected tag dynamically
+  const fetchPosts = async (tagSlug: string = "All") => {
+    try {
+      setIsLoading(true);
+      const ghostPosts: any = await getPosts(
+        tagSlug === "All" ? "tag-blog" : tagSlug.replace("tag:", "tag-"),
+        currentPage,
+        limit,
+        debouncedSearch
+      );
+      setTotalPage(ghostPosts?.meta?.pagination?.pages);
+      if (currentPage == 1) {
+        setPosts(ghostPosts);
+        setFilteredPosts(ghostPosts);
+      } else {
+        // Append new posts to the existing state
+          setPosts((prev) => [...prev, ...ghostPosts]);
 
-  // Fetch posts
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setIsLoading(true);
-        const ghostPosts: any = await getPosts();
-        setPosts(ghostPosts as any);
-
-        // collect all tags dynamically
-        const uniqueTags = new Set<string>();
-        ghostPosts.forEach((p: Post) => {
-          if (p.primary_tag) uniqueTags.add(p.primary_tag.name);
-          if (p.tags && p.tags.length > 0) {
-            p.tags.forEach((t: any) => uniqueTags.add(t.name));
-          }
-        });
-
-        setTags(["All", ...Array.from(uniqueTags)]);
-      } catch (error) {
-        console.error("Failed to fetch posts:", error);
-      } finally {
-        setIsLoading(false);
       }
-    };
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    fetchPosts();
-  }, []);
 
-  // Apply filters
+  // Fetch tags on mount
   useEffect(() => {
-    let results = [...posts];
+    fetchAllTags("tag-blog");
+  }, []);
+  useEffect(() => {
+    fetchPosts();
+  }, [debouncedSearch, currentPage])
 
-    if (searchQuery) {
-      results = results.filter(
-        (post) =>
-          post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          post.primary_tag?.name
-            ?.toLowerCase()
-            .includes(searchQuery.toLowerCase())
-      );
-    }
-
+  // Fetch new posts when tag changes
+  useEffect(() => {
     if (selectedTag !== "All") {
-      results = results.filter(
-        (post) =>
-          post.primary_tag?.name === selectedTag ||
-          post.tags?.some((t: any) => t.name === selectedTag)
-      );
+      fetchPosts(selectedTag);
+    } else {
+      fetchPosts("All");
     }
+  }, [selectedTag]);
+
+  // Apply search filter locally (since search is usually quick and doesn't need API call)
+  useEffect(() => {
+    if (!searchQuery) {
+      setFilteredPosts(posts);
+      return;
+    }
+
+    const results = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.primary_tag?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     setFilteredPosts(results);
-  }, [searchQuery, selectedTag, posts]);
-
+  }, [searchQuery, posts]);
   return (
     <PageLayout>
       {/* Hero Section */}
@@ -107,22 +129,28 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Featured Article (pass first featured post if available) */}
+      {/* Featured Article */}
       <FeaturedArticle />
 
-      {/* Categories / Tags */}
+      {/* Categories / Tags - Now uses tag names instead of slugs for display */}
       <TagsFilterSection
         selectedCategory={selectedTag}
-        handleCategoryChange={(cat: string) => setSelectedTag(cat)}
+        handleCategoryChange={(category: string) => setSelectedTag(category)}
+        isLoading={isLoading} tags={tags}
       />
 
       {/* Blog Grid */}
       <BlogGrid
+        isLoading={isLoading}
         filteredPosts={filteredPosts}
         searchQuery={searchQuery}
         selectedTag={selectedTag}
-        resetSearch={resetSearch}
-        resetFilters={resetFilters}
+        resetSearch={() => { }}
+        resetFilters={() => { }}
+        hasMore={currentPage < totalPage}
+        handleLoadeMore={() => {
+          setCurrentPage(currentPage + 1);
+        }}
       />
 
       <Newsletter />

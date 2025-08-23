@@ -49,7 +49,7 @@ const FeaturedArticle = () => {
                   />
                   <div className="absolute top-4 left-4">
                     <Badge className="bg-purple-600 text-white">
-                      {featuredPost.primary_tag?.name || "Category"}
+                      Featured
                     </Badge>
                   </div>
                 </div>

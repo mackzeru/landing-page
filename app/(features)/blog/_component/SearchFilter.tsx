@@ -17,6 +17,20 @@ interface SearchFilterProps {
   categories: string[];
 }
 
+const allExceptFirst = (categories: string[]) => {
+  const rest = categories.filter(cat => cat !== "tag:blog");
+  return rest;
+};
+
+const formatCategoryName = (name: unknown) => {
+  if (typeof name !== "string") return ""; // defensive fallback
+  return name
+    .replace("tag:blog", "")
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export function SearchFilter({
   searchQuery,
   setSearchQuery,
@@ -50,48 +64,45 @@ export function SearchFilter({
           <PopoverTrigger asChild>
             <Button
               variant={selectedCategory !== "All" ? "default" : "outline"}
-              className={`rounded-xl px-5 py-3 border-2 transition-all duration-200 ${
-                selectedCategory !== "All"
+              className={`rounded-xl px-8 py-5 border-2 transition-all duration-200 ${selectedCategory !== "All"
                   ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-md"
                   : "border-gray-300 hover:border-purple-500 bg-white"
-              }`}
+                }`}
             >
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="h-6 w-6 mr-2" />
               Filter
               {selectedCategory !== "All" && (
                 <span className="ml-2 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">
-                  {selectedCategory}
+                  {formatCategoryName(selectedCategory)}
                 </span>
               )}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-56 p-0 rounded-xl shadow-xl border border-gray-200 max-h-36 overflow-auto">
             <div className="py-1">
-              <button
+              {/* <button
                 onClick={() => handleCategoryChange("All")}
-                className={`w-full text-left px-4 py-2.5 text-sm flex items-center transition-colors ${
-                  selectedCategory === "All"
+                className={`w-full text-left px-4 py-2.5 text-sm flex items-center transition-colors ${selectedCategory === "All"
                     ? "bg-purple-50 text-purple-600 font-medium"
                     : "text-gray-700 hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 <span>All Categories</span>
                 {selectedCategory === "All" && (
                   <Check className="h-4 w-4 ml-auto text-purple-600" />
                 )}
-              </button>
+              </button> */}
 
-              {categories.map((category) => (
+              {categories.length > 0 && allExceptFirst(categories).map((category) => (
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
-                  className={`w-full text-left px-4 py-2.5 text-sm flex items-center transition-colors ${
-                    selectedCategory === category
+                  className={`w-full text-left px-4 py-2.5 text-sm flex items-center transition-colors ${selectedCategory === category
                       ? "bg-purple-50 text-purple-600 font-medium"
                       : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
-                  <span>{category}</span>
+                  <span>{formatCategoryName(category)}</span> {/* Format category name */}
                   {selectedCategory === category && (
                     <Check className="h-4 w-4 ml-auto text-purple-600" />
                   )}
@@ -101,12 +112,11 @@ export function SearchFilter({
           </PopoverContent>
         </Popover>
       </div>
-
       {/* Active Filter Badge */}
       {selectedCategory !== "All" && (
         <div className="mt-3 flex items-center">
           <Badge className="bg-gradient-to-r from-purple-50 to-blue-50 text-purple-600 border border-purple-200 rounded-lg px-3 py-1.5">
-            {selectedCategory}
+            {formatCategoryName(selectedCategory)}
             <button
               onClick={() => setSelectedCategory("All")}
               className="ml-2 p-0.5 rounded-full hover:bg-purple-100 transition-colors"

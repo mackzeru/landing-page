@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArticleCard } from "../_component/ArticleCard";
-import {  getPost, getPosts, getRelatedPosts } from "@/services/content-api";
+import { getPost, getPosts, getRelatedPosts } from "@/services/content-api";
 import { Post } from "@/app/_types/ghost";
 
 export default function BlogDetailPage() {
@@ -30,30 +30,30 @@ export default function BlogDetailPage() {
   const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      setIsLoading(true);
-      const fetchedPost = await getPost(slug)
-      setPost(fetchedPost as any);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const fetchedPost = await getPost(slug)
+        setPost(fetchedPost as any);
 
-      if (fetchedPost?.primary_tag?.slug) {
-        const related = await getRelatedPosts(fetchedPost.primary_tag.slug, fetchedPost.id);
-        setRelatedPosts(related as any);
-      } else {
-        // fallback: latest posts excluding current
-        const latest:any = await getPosts({ limit: 3 });
-        setRelatedPosts(latest.filter((p:any) => p.id !== fetchedPost.id));
+        if (fetchedPost?.primary_tag?.slug) {
+          const related = await getRelatedPosts(fetchedPost.primary_tag.slug, fetchedPost.id);
+          setRelatedPosts(related as any);
+        } else {
+          // fallback: latest posts excluding current
+          const latest: any = await getPosts("tag-blog", 1, 3);
+          setRelatedPosts(latest.filter((p: any) => p.id !== fetchedPost.id));
+        }
+      } catch (err) {
+        console.error("Error fetching post:", err);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (err) {
-      console.error("Error fetching post:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
 
-  if (slug) fetchData();
-}, [slug]);
+    if (slug) fetchData();
+  }, [slug]);
 
 
 
@@ -98,7 +98,7 @@ useEffect(() => {
       />
 
       {/* Author Bio */}
-      <AuthorBio author={post.primary_author} />
+      {/* <AuthorBio author={post.primary_author} /> */}
 
       {/* Related Posts */}
       <RelatedPosts posts={relatedPosts} />
@@ -112,14 +112,32 @@ useEffect(() => {
 /* ────────────── Reusable Components ────────────── */
 
 const Breadcrumb = ({ title }: { title: string }) => (
-  <section className="py-6 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-    <div className="max-w-4xl mx-auto px-6">
-      <nav className="flex items-center space-x-2 text-sm">
-        <Link href="/" className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</Link>
+  <section className="py-4 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div className="max-w-5xl mx-auto px-6">
+      <nav className="flex items-center flex-wrap text-sm space-x-2 sm:space-x-3">
+        <Link
+          href="/"
+          className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
+        >
+          Home
+          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-600 dark:bg-blue-400 group-hover:w-full transition-all"></span>
+        </Link>
+
         <ChevronRight className="h-4 w-4 text-gray-400" />
-        <Link href="/blog" className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Blog</Link>
+
+        <Link
+          href="/blog"
+          className="mx-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
+        >
+          Blog
+          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-600 dark:bg-blue-400 group-hover:w-full transition-all"></span>
+        </Link>
+
         <ChevronRight className="h-4 w-4 text-gray-400" />
-        <span className="text-gray-900 dark:text-white font-medium">{title}</span>
+
+        <span className="text-gray-900 dark:text-white font-medium truncate max-w-xs">
+          {title}
+        </span>
       </nav>
     </div>
   </section>
@@ -153,47 +171,59 @@ const ArticleHeader = ({ post }: { post: Post }) => (
           )}
 
           <ArticleMeta post={post} />
-          <ShareButtons />
+          {/* <ShareButtons /> */}
         </div>
       </ScrollReveal>
     </div>
   </section>
 );
 
-const ArticleMeta = ({ post }: { post: Post }) => (
-  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 pb-8 border-b border-gray-200 dark:border-gray-700">
-    <div className="flex items-center space-x-4">
-      <img
-        src={post.primary_author?.profile_image || "/placeholder.svg"}
-        alt={post.primary_author?.name || "Author"}
-        className="w-12 h-12 rounded-full object-cover"
-      />
-      <div>
-        <div className="font-semibold text-gray-900 dark:text-white">
-          {post.primary_author?.name}
+const ArticleMeta = ({ post }: { post: Post }) => {
+  const hasProfileImage = post.primary_author?.profile_image;
+  const authorName = post.primary_author?.name || 'Author';
+  const initials = authorName.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
+
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 pb-8 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center space-x-4">
+        {hasProfileImage ? (
+          <img
+            src={post.primary_author.profile_image ?? ""}
+            alt={authorName}
+            className="w-12 h-12 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-gray-700 dark:text-gray-300 font-semibold text-lg text-purple-600 dark:text-purple-400 font-semibold text-sm">
+            {initials}
+          </div>
+        )}
+        <div>
+          <div className="font-semibold text-gray-900 dark:text-white">
+            {authorName}
+          </div>
+          {post.primary_author?.bio && (
+            <div className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+              {post.primary_author.bio}
+            </div>
+          )}
         </div>
-        {post.primary_author?.bio && (
-          <div className="text-sm text-gray-500 dark:text-gray-400">
-            {post.primary_author?.bio}
+      </div>
+
+      <div className="flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex items-center">
+          <Calendar className="h-4 w-4 mr-1" />
+          {new Date(post.published_at).toLocaleDateString()}
+        </div>
+        {post.reading_time && (
+          <div className="flex items-center">
+            <Clock className="h-4 w-4 mr-1" />
+            {post.reading_time} min read
           </div>
         )}
       </div>
     </div>
-
-    <div className="flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
-      <div className="flex items-center">
-        <Calendar className="h-4 w-4 mr-1" />
-        {new Date(post.published_at).toLocaleDateString()}
-      </div>
-      {post.reading_time && (
-        <div className="flex items-center">
-          <Clock className="h-4 w-4 mr-1" />
-          {post.reading_time} min read
-        </div>
-      )}
-    </div>
-  </div>
-);
+  );
+};
 
 const ShareButtons = () => (
   <div className="flex items-center justify-between pt-6">
@@ -211,10 +241,6 @@ const ShareButtons = () => (
         <Link2 className="h-4 w-4" />
       </Button>
     </div>
-    <Button variant="outline" size="sm" className="rounded-full bg-transparent">
-      <Bookmark className="h-4 w-4 mr-2" />
-      Save
-    </Button>
   </div>
 );
 
@@ -255,7 +281,7 @@ const ArticleTags = ({ tags }: { tags: string[] }) => (
               variant="secondary"
               className="bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 cursor-pointer transition-colors"
             >
-              {tag}
+              {tag.replace("tag:", "")}
             </Badge>
           ))}
         </div>
