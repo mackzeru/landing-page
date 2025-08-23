@@ -63,36 +63,23 @@ export function SearchFilter({
         <Popover>
           <PopoverTrigger asChild>
             <Button
-              variant={selectedCategory !== "All" ? "default" : "outline"}
-              className={`rounded-xl px-8 py-5 border-2 transition-all duration-200 ${selectedCategory !== "All"
+              variant={selectedCategory !== "All" && selectedCategory !== "tag:blog"  ? "default" : "outline"}
+              className={`rounded-xl px-8 py-5 border-2 transition-all duration-200 ${selectedCategory !== "All" && selectedCategory !== "tag:blog" 
                   ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-md"
                   : "border-gray-300 hover:border-purple-500 bg-white"
                 }`}
             >
               <Filter className="h-6 w-6 mr-2" />
               Filter
-              {selectedCategory !== "All" && (
+              {selectedCategory !== "All" && selectedCategory !== "tag:blog"  && (
                 <span className="ml-2 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">
                   {formatCategoryName(selectedCategory)}
                 </span>
               )}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-56 p-0 rounded-xl shadow-xl border border-gray-200 max-h-36 overflow-auto">
-            <div className="py-1">
-              {/* <button
-                onClick={() => handleCategoryChange("All")}
-                className={`w-full text-left px-4 py-2.5 text-sm flex items-center transition-colors ${selectedCategory === "All"
-                    ? "bg-purple-50 text-purple-600 font-medium"
-                    : "text-gray-700 hover:bg-gray-100"
-                  }`}
-              >
-                <span>All Categories</span>
-                {selectedCategory === "All" && (
-                  <Check className="h-4 w-4 ml-auto text-purple-600" />
-                )}
-              </button> */}
-
+          <PopoverContent className="w-56  p-0 rounded-xl shadow-xl border border-gray-200 max-h-36 overflow-auto">
+            <div className="py-1 ">
               {categories.length > 0 && allExceptFirst(categories).map((category) => (
                 <button
                   key={category}
@@ -113,9 +100,9 @@ export function SearchFilter({
         </Popover>
       </div>
       {/* Active Filter Badge */}
-      {selectedCategory !== "All" && (
+      {selectedCategory !== "All" && selectedCategory !== "tag:blog"  && (
         <div className="mt-3 flex items-center">
-          <Badge className="bg-gradient-to-r from-purple-50 to-blue-50 text-purple-600 border border-purple-200 rounded-lg px-3 py-1.5">
+          <Badge className="bg-gradient-to-r from-purple-50   to-blue-50 text-purple-600 border border-purple-200 rounded-lg px-3 py-1.5">
             {formatCategoryName(selectedCategory)}
             <button
               onClick={() => setSelectedCategory("All")}

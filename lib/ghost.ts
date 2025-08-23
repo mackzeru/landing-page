@@ -22,13 +22,4 @@ export interface GhostSettings {
   description: string;
 }
 
-// Helper functions
-export async function getPosts(): Promise<PostsOrPages> {
-  return await api.posts.browse({ limit: 10, include: ["tags", "authors"] });
-}
-
-export async function getPost(slug: string): Promise<PostOrPage> {
-  return await api.posts.read({ slug });
-}
-
 export default api;

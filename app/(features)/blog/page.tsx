@@ -17,7 +17,7 @@ export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTag, setSelectedTag] = useState("All");
+  const [selectedTag, setSelectedTag] = useState("tag:blog");
   const [posts, setPosts] = useState<Post[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
   const [tags, setTags] = useState<string[]>([]);

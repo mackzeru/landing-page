@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -10,47 +9,89 @@ import QuickActions from "./_components/QuickActions";
 import CTASection from "./_components/CTASection";
 import FAQList from "./_components/FAQList";
 import CategoryFilter from "./_components/CategoryFilter";
-import { FAQPost, getFAQPosts } from "@/services/faq-content-api";
+import { getAllTags, getPosts } from "@/services/content-api";
+import { useDebounce } from "@/hooks/custom/use-debounce";
+import { Post } from "@/app/_types/ghost";
+
+const limit = 10;
 
 export default function FAQPage() {
-  const [faqs, setFaqs] = useState<FAQPost[]>([]);
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState("tag:faq");
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearch = useDebounce(searchQuery, 500);
+  const [category, setCategory] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  // Fetch FAQs from Ghost CMS
-  useEffect(() => {
-    async function fetchFAQs() {
-      try {
-        const data = await getFAQPosts();
-        setFaqs(data);
-      } catch (err) {
-        console.error("Error fetching FAQs:", err);
-      } finally {
-        setLoading(false);
-      }
+  // Fetch all tags dynamically
+  const fetchAllTags = async (prefix?: string) => {
+    try {
+      const ghostTags: any = await getAllTags(prefix);
+      const uniqueTagNames = new Set<string>(["All"]);
+      ghostTags.forEach((tag: any) => {
+        uniqueTagNames.add(tag.name);
+      });
+      setCategory(Array.from(uniqueTagNames));
+    } catch (error) {
+      console.error("Failed to fetch tags:", error);
     }
-    fetchFAQs();
-  }, []);
+  };
 
-  // Build categories dynamically from Ghost tags
-  const categories = ["All", ...Array.from(new Set(faqs.map((faq) => faq.category)))];
+  // Fetch posts based on selected tag dynamically
+  const fetchPosts = async (tagSlug: string = "All") => {
+    try {
+      setIsLoading(true);
+      const ghostPosts: any = await getPosts(
+        tagSlug === "All" ? "tag-faq" : tagSlug.replace("tag:", "tag-"),
+        currentPage,
+        limit,
+        debouncedSearch
+      );
+      
+      setTotalPage(ghostPosts?.meta?.pagination?.pages);
+      if (currentPage === 1) {
+        setPosts(ghostPosts || []);
+      } else {
+        setPosts((prev) => [...prev, ...(ghostPosts || [])]);
+      }
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  const filteredFAQs = faqs.filter((faq) => {
-    const matchesCategory = selectedCategory === "All" || faq.category === selectedCategory;
-    const matchesSearch =
-      searchTerm === "" ||
-      faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      faq.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+  // Filter posts based on search term and category
+  const filteredPosts = posts.filter((post) => {
+    const matchesCategory = selectedCategory === "All" || 
+      post.tags?.some(tag => tag.name === selectedCategory);
+    
+    const matchesSearch = searchTerm === "" ||
+      post.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.html?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.tags?.some(tag => tag.name?.toLowerCase().includes(searchTerm.toLowerCase()));
+
     return matchesCategory && matchesSearch;
   });
+
+  // Fetch tags on mount
+  useEffect(() => {
+    fetchAllTags("tag-faq");
+  }, []);
+
+  useEffect(() => {
+    fetchPosts(selectedCategory);
+  }, [debouncedSearch, currentPage, selectedCategory]);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-
+  console.log(selectedCategory);
   return (
     <PageLayout>
       {/* Hero Section */}
@@ -117,17 +158,17 @@ export default function FAQPage() {
 
       {/* Category Filter */}
       <CategoryFilter
-        categories={categories}
+        categories={category}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
 
       {/* FAQ List */}
-      {loading ? (
+      {isLoading ? (
         <p className="text-center text-gray-500 py-12">Loading FAQs...</p>
       ) : (
         <FAQList
-          filteredFAQs={filteredFAQs}
+          filteredFAQs={filteredPosts}
           toggleFAQ={toggleFAQ}
           openIndex={openIndex}
         />

@@ -6,14 +6,20 @@ import { Clock, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
 import { Post } from "@/app/_types/ghost";
-import { useEffect, useState } from "react";
-import { getFeaturedPosts } from "@/services/content-api";
+import { useEffect, useState } from "react";import { getPosts } from "@/services/content-api";
+;
 
 const FeaturedArticle = () => {
   const [featuredPost, setFeaturedBlog] = useState<Post | undefined>(undefined);
 
   const fetchFeaturedPost = async () => {
-    const featuredPosts = await getFeaturedPosts(1);
+    const featuredPosts = await getPosts(
+      "tag-blog",
+      1,
+      1,
+      "",
+      true
+    );
     const featuredPost = featuredPosts[0];
     setFeaturedBlog(featuredPost as Post);
   };

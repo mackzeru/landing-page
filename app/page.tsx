@@ -8,7 +8,7 @@ import { RotatingTrustBadges } from "@/components/custom/RotatingTrustBadges";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
 import { CopilotScrollSection } from "@/components/custom/CopilotScrollSection";
 import { FAQSection } from "@/components/custom/FAQSection";
-import { EnhancedTestimonials } from "@/components/custom/testimoniyal";
+import { EnhancedTestimonials } from "@/components/custom/testimonials";
 import { EnhancedPricing } from "@/components/custom/Pricing";
 import { EnhancedTimeline } from "@/components/custom/TimelineSection";
 

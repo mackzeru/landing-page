@@ -33,12 +33,16 @@ export async function getPosts(
   tagSlug: string,
   currentPage: number,
   limit: number,
-  search?: string
+  search?: string,
+  isFeatured?: boolean,
 ): Promise<PostsOrPages> {
   const filters: string[] = []; 
   filters.push(`tag:${tagSlug}`);
   if (search) {
     filters.push(`title:~'${search.replace(/'/g, "\\'")}*'`);
+  }
+  if(isFeatured){
+    filters.push("featured:true");
   }
   const filterString = filters.length ? filters.join("+") : undefined;
 
@@ -58,18 +62,6 @@ export async function getPosts(
  */
 export async function getPost(slug: string): Promise<GhostPost> {
   return await api.posts.read({ slug }, { include: ["tags", "authors"] });
-}
-
-/**
- * Fetch featured posts
- */
-export async function getFeaturedPosts(limit = 3): Promise<PostsOrPages> {
-  return await api.posts.browse({
-    limit,
-    filter: "featured:true",
-    include: ["tags", "authors"],
-    order: "published_at DESC",
-  });
 }
 
 /**
