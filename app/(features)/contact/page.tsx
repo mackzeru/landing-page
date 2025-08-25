@@ -336,52 +336,7 @@ export default function ContactPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-              Frequently Asked Questions
-            </h2>
 
-            <div className="space-y-4">
-              {[
-                {
-                  question: "What's your average response time?",
-                  answer:
-                    "We respond to all inquiries within 2 minutes during business hours and within 4 hours outside business hours.",
-                },
-                {
-                  question: "Do you offer phone support?",
-                  answer:
-                    "Yes! Phone support is available Monday-Friday, 9AM-6PM PST. Enterprise customers have 24/7 phone access.",
-                },
-                {
-                  question: "Can I schedule a demo?",
-                  answer:
-                    "You can book a personalized demo at any time. Our team will walk you through all features relevant to your use case.",
-                },
-                {
-                  question: "What if I need help outside business hours?",
-                  answer:
-                    "Our live chat and email support are available 24/7. For urgent issues, enterprise customers can access our emergency hotline.",
-                },
-              ].map((faq, index) => (
-                <Card
-                  key={index}
-                  className="text-left bg-white dark:bg-gray-800 border-0 shadow-lg dark:shadow-gray-900/50"
-                >
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                      {faq.question}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
         {/* Live Demo CTA */}
         <section className="py-24 bg-gradient-to-r from-indigo-600 to-purple-600">
           <div className="max-w-4xl mx-auto px-6 text-center">

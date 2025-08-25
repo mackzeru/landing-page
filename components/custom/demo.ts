@@ -14,6 +14,10 @@ import {
   Code2,
   Network,
   Users2,
+  BookOpen,
+  Film,
+  Info,
+  Mail,
 } from "lucide-react";
 const featuresDropdown = [
   {
@@ -29,7 +33,35 @@ const featuresDropdown = [
     icon: Search,
   },
 ];
-
+export const moreDropdown = [
+  {
+    title: "Knowledge Base",
+    description: "Access articles and tutorials",
+    href: "/knowledge-base",
+    icon: BookOpen,
+  },
+  //demo
+  {
+    title: "Demo",
+    description: "Watch a demo of Leelu",
+    href: "/demo",
+    icon: Film,
+  },
+  //about
+  {
+    title: "About",
+    description: "Learn more about Leelu",
+    href: "/about",
+    icon: Info,
+  },
+  //contact
+  {
+    title: "Contact",
+    description: "Get in touch with Leelu",
+    href: "/contact",
+    icon: Mail,
+  },
+];
 const industries = [
   {
     title: "Tech/IT",
