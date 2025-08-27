@@ -144,14 +144,14 @@ const stakeholders = [
     icon: Briefcase,
     color: "text-yellow-500",
   },
-  {
-    title: "Talent Operations",
-    href: "/solutions/stakeholder/talent-operations",
+  // {
+  //   title: "Talent Operations",
+  //   href: "/solutions/stakeholder/talent-operations",
 
-    description: "Streamline operations with centralized AI insights",
-    icon: BarChart3,
-    color: "text-purple-500",
-  },
+  //   description: "Streamline operations with centralized AI insights",
+  //   icon: BarChart3,
+  //   color: "text-purple-500",
+  // },
   // people-operations
   {
     title: "People Operations",

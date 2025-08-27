@@ -1,565 +1,436 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
-  Settings,
-  BarChart3,
-  Target,
-  TrendingUp,
   CheckCircle,
-  ArrowRight,
+  AlertCircle,
   Play,
+  ArrowRight,
   Zap,
+  Calendar,
+  MessageCircle,
+  Target,
   Users,
   Clock,
-  DollarSign,
-  Star,
-  Database,
-  PieChart,
-  Activity,
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
 
-export default function TalentOperationsPage() {
+export default function TalentAcquisitionPage() {
   return (
     <PageLayout>
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-        {/* Hero Section */}
-        <section className="py-20 px-6">
-          <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+        {/* Hero Section with gradient background */}
+        <section className="relative py-28 px-8 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-blue-50 dark:from-purple-900/10 dark:via-gray-900 dark:to-blue-900/10 -z-10"></div>
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl opacity-50"></div>
+
+          <div className="max-w-6xl mx-auto text-center relative z-10">
+            <ScrollReveal>
+              <div className="inline-flex items-center rounded-full bg-white dark:bg-gray-800 shadow-md px-4 py-2 mb-8 border border-gray-100 dark:border-gray-700">
+                <Zap className="h-4 w-4 text-purple-600 mr-2" />
+                <span className="text-sm font-medium">
+                  AI-Powered Talent Acquisition
+                </span>
+              </div>
+
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight dark:text-white">
+                Transform Your{" "}
+                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  Hiring Process
+                </span>
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Leelu's AI Copilot finds, qualifies, and books interviews with
+                top candidates —
+                <strong className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  {" "}
+                  while you sleep
+                </strong>
+                .
+              </p>
+
+              <div className="bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 text-green-800 dark:text-green-300 px-6 py-4 rounded-2xl inline-flex items-center space-x-3 max-w-max mx-auto mb-12 border border-green-200 dark:border-green-700/30 shadow-sm">
+                <CheckCircle className="h-6 w-6 flex-shrink-0" />
+                <span className="font-semibold">
+                  From job post to first interview — in hours, not weeks
+                </span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  Start Free Trial
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="px-8 py-4 rounded-xl font-semibold text-lg border-2 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Demo
+                </Button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* The Problem */}
+        <section className="py-20 px-8 bg-gradient-to-br from-red-50/50 to-orange-50/50 dark:from-red-900/10 dark:to-orange-900/10">
+          <div className="max-w-5xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-16">
-                <Badge className="mb-6 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-700">
-                  <Settings className="h-4 w-4 mr-2" />
-                  For Talent Operations
-                </Badge>
-                <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                  Optimize processes with
-                  <br />
-                  <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                    data-driven insights
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">
+                  The Hiring Reality{" "}
+                  <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                    Today
                   </span>
-                </h1>
-                <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-                  Transform your talent operations with AI-powered analytics,
-                  process automation, and strategic insights that drive
-                  measurable results across your entire hiring ecosystem.
+                </h2>
+                <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  If you're a Talent Acquisition leader, you know the challenges
+                  all too well
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                    Optimize Your Operations
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="px-8 py-3 rounded-full font-semibold bg-transparent"
-                  >
-                    <Play className="mr-2 h-5 w-5" />
-                    Watch Demo
-                  </Button>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <div className="bg-white dark:bg-gray-800 p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center mb-8">
+                  <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center mr-4">
+                    <AlertCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold dark:text-white">
+                    Before Leelu: Manual, Slow, and Overwhelming
+                  </h3>
                 </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
 
-        {/* Key Challenges */}
-        <section className="py-20 px-6 bg-white dark:bg-gray-800">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                  Talent Operations Challenges
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
-                  The complex challenges you face every day
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: BarChart3,
-                  title: "Fragmented Data",
-                  description:
-                    "Recruiting data scattered across multiple platforms makes it impossible to get a complete picture of performance.",
-                  color: "text-red-500",
-                },
-                {
-                  icon: Clock,
-                  title: "Manual Reporting",
-                  description:
-                    "Hours spent compiling reports from different systems instead of analyzing and optimizing processes.",
-                  color: "text-orange-500",
-                },
-                {
-                  icon: Target,
-                  title: "Lack of Visibility",
-                  description:
-                    "No real-time insights into recruiter performance, candidate pipeline health, or process bottlenecks.",
-                  color: "text-yellow-500",
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Inconsistent Processes",
-                  description:
-                    "Different recruiters using different approaches makes it hard to standardize and scale best practices.",
-                  color: "text-blue-500",
-                },
-                {
-                  icon: DollarSign,
-                  title: "ROI Uncertainty",
-                  description:
-                    "Difficulty proving the value of recruiting investments and optimizing budget allocation.",
-                  color: "text-green-500",
-                },
-                {
-                  icon: Users,
-                  title: "Resource Allocation",
-                  description:
-                    "Challenges in determining optimal team size, skill mix, and workload distribution.",
-                  color: "text-purple-500",
-                },
-              ].map((item, index) => (
-                <ScrollReveal key={index} delay={index * 100}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-l-4 border-l-gray-200 dark:border-l-gray-700 hover:border-l-purple-500">
-                    <CardContent className="p-6">
-                      <item.icon className={`h-12 w-12 ${item.color} mb-4`} />
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {item.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Solutions */}
-        <section className="py-20 px-6 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                  AI-Powered Operations Intelligence
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
-                  Centralize, automate, and optimize your entire talent
-                  acquisition operation
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Database,
-                  title: "Unified Data Platform",
-                  description:
-                    "Consolidate data from all recruiting platforms into a single, comprehensive dashboard with real-time insights.",
-                  features: [
-                    "Multi-platform integration",
-                    "Real-time data sync",
-                    "Custom reporting",
-                  ],
-                  color: "text-purple-600",
-                },
-                {
-                  icon: BarChart3,
-                  title: "Advanced Analytics",
-                  description:
-                    "Deep insights into recruiting performance, candidate quality, and process efficiency with predictive analytics.",
-                  features: [
-                    "Performance metrics",
-                    "Predictive modeling",
-                    "Trend analysis",
-                  ],
-                  color: "text-blue-600",
-                },
-                {
-                  icon: Zap,
-                  title: "Process Automation",
-                  description:
-                    "Automate routine tasks and workflows to free up your team for strategic initiatives and optimization.",
-                  features: [
-                    "Workflow automation",
-                    "Task scheduling",
-                    "Alert systems",
-                  ],
-                  color: "text-blue-600",
-                },
-                {
-                  icon: Target,
-                  title: "Performance Optimization",
-                  description:
-                    "Identify bottlenecks, optimize processes, and implement best practices across your entire team.",
-                  features: [
-                    "Bottleneck identification",
-                    "Process optimization",
-                    "Best practice sharing",
-                  ],
-                  color: "text-green-600",
-                },
-                {
-                  icon: PieChart,
-                  title: "Resource Planning",
-                  description:
-                    "Optimize team allocation, budget distribution, and capacity planning with data-driven insights.",
-                  features: [
-                    "Capacity planning",
-                    "Budget optimization",
-                    "Team allocation",
-                  ],
-                  color: "text-orange-600",
-                },
-                {
-                  icon: Activity,
-                  title: "Quality Assurance",
-                  description:
-                    "Monitor and maintain consistent quality standards across all recruiting activities and touchpoints.",
-                  features: [
-                    "Quality monitoring",
-                    "Compliance tracking",
-                    "Standard enforcement",
-                  ],
-                  color: "text-red-600",
-                },
-              ].map((item, index) => (
-                <ScrollReveal key={index} delay={index * 100}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-6">
-                      <item.icon className={`h-12 w-12 ${item.color} mb-4`} />
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">
-                        {item.description}
-                      </p>
-                      <ul className="space-y-2">
-                        {item.features.map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className="flex items-center text-sm"
-                          >
-                            <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-                            <span className="text-gray-600 dark:text-gray-300">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Dashboard Preview */}
-        <section className="py-20 px-6 bg-white dark:bg-gray-800">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                  Your Operations Command Center
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
-                  Get a complete view of your talent acquisition operations
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal>
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10 rounded-2xl p-8 border border-purple-200 dark:border-purple-700">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
                   {[
                     {
-                      title: "Active Campaigns",
-                      value: "24",
-                      change: "+12%",
-                      icon: Target,
-                      color: "text-blue-600",
+                      icon: <Target className="h-5 w-5" />,
+                      text: "Hours wasted sourcing across multiple platforms",
                     },
                     {
-                      title: "Avg. Time to Interview",
-                      value: "3.2 days",
-                      change: "-67%",
-                      icon: Clock,
-                      color: "text-green-600",
+                      icon: <Clock className="h-5 w-5" />,
+                      text: "Manual resume screening and comparison",
                     },
                     {
-                      title: "Cost per Hire",
-                      value: "$2,840",
-                      change: "-45%",
-                      icon: DollarSign,
-                      color: "text-purple-600",
+                      icon: <MessageCircle className="h-5 w-5" />,
+                      text: "Endless email chains for scheduling",
                     },
                     {
-                      title: "Quality Score",
-                      value: "94%",
-                      change: "+18%",
-                      icon: Star,
-                      color: "text-orange-600",
+                      icon: <Users className="h-5 w-5" />,
+                      text: "Scaling requires hiring more recruiters",
                     },
-                  ].map((metric, index) => (
+                  ].map((item, index) => (
                     <div
                       key={index}
-                      className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+                      className="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl"
                     >
-                      <div className="flex items-center justify-between mb-4">
-                        <metric.icon className={`h-8 w-8 ${metric.color}`} />
-                        <span className="text-sm font-medium text-green-600 dark:text-green-400">
-                          {metric.change}
+                      <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="font-bold text-blue-600 dark:text-blue-400">
+                          {index + 1}
                         </span>
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                        {metric.value}
-                      </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">
-                        {metric.title}
+                      <div className="text-gray-600 dark:text-gray-300">
+                        {item.text}
                       </div>
                     </div>
                   ))}
                 </div>
+
+                <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-2xl border border-red-200 dark:border-red-700/30">
+                  <p className="text-red-800 dark:text-red-300 font-semibold text-center">
+                    The result?{" "}
+                    <span className="underline">
+                      Slow time-to-fill, burnout, and missed talent.
+                    </span>
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* Key Benefits */}
-        <section className="py-20 px-6 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10">
-          <div className="max-w-7xl mx-auto">
+        {/* The Solution */}
+        <section className="py-20 px-8 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/10 dark:to-indigo-900/10">
+          <div className="max-w-5xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                  Measurable Impact
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">
+                  After Leelu:{" "}
+                  <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    Autonomous & Scalable
+                  </span>
                 </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
-                  See the results that matter to your organization
+                <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  Set it up once — and our AI does the rest while you focus on
+                  what matters
                 </p>
               </div>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                {
-                  icon: TrendingUp,
-                  stat: "75%",
-                  label: "Faster reporting",
-                  description:
-                    "Automated dashboards eliminate manual report compilation",
-                  color: "text-blue-600",
-                },
-                {
-                  icon: DollarSign,
-                  stat: "40%",
-                  label: "Cost reduction",
-                  description:
-                    "Optimize resource allocation and eliminate inefficiencies",
-                  color: "text-green-600",
-                },
-                {
-                  icon: Target,
-                  stat: "90%",
-                  label: "Process standardization",
-                  description:
-                    "Consistent workflows across all recruiting activities",
-                  color: "text-purple-600",
-                },
-                {
-                  icon: Star,
-                  stat: "95%",
-                  label: "Data accuracy",
-                  description:
-                    "Reliable insights for strategic decision making",
-                  color: "text-orange-600",
-                },
-              ].map((item, index) => (
-                <ScrollReveal key={index} delay={index * 100}>
-                  <Card className="text-center hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-8">
-                      <item.icon
-                        className={`h-12 w-12 ${item.color} mx-auto mb-4`}
-                      />
-                      <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                        {item.stat}
-                      </div>
-                      <div className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                        {item.label}
+            <ScrollReveal>
+              <div className="bg-white dark:bg-gray-800 p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center mb-8">
+                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mr-4">
+                    <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold dark:text-white">
+                    How Leelu Transforms Your Hiring Process
+                  </h3>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  {[
+                    {
+                      title: "Simultaneous Sourcing",
+                      description:
+                        "Across LinkedIn, Indeed, Monster, Greenhouse, Lever, and more — all in one search.",
+                      icon: <Target className="h-5 w-5 text-blue-600" />,
+                    },
+                    {
+                      title: "AI-Powered Matching",
+                      description:
+                        "Compares every candidate's profile with your job description automatically.",
+                      icon: <Zap className="h-5 w-5 text-purple-600" />,
+                    },
+                    {
+                      title: "Autonomous Outreach",
+                      description:
+                        "Sends personalized messages and handles all responses and objections.",
+                      icon: (
+                        <MessageCircle className="h-5 w-5 text-green-600" />
+                      ),
+                    },
+                    {
+                      title: "Auto-Booked Interviews",
+                      description:
+                        "Interviews scheduled directly into your calendar — no coordination needed.",
+                      icon: <Calendar className="h-5 w-5 text-orange-600" />,
+                    },
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="group p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-700/50 dark:to-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-500 transition-all duration-300 hover:shadow-md"
+                    >
+                      <div className="flex items-center mb-4">
+                        <div className="w-10 h-10 bg-white dark:bg-gray-700 rounded-xl flex items-center justify-center mr-3 shadow-sm group-hover:shadow-md transition-shadow">
+                          {item.icon}
+                        </div>
+                        <h4 className="font-semibold text-lg dark:text-white">
+                          {item.title}
+                        </h4>
                       </div>
                       <p className="text-gray-600 dark:text-gray-300">
                         {item.description}
                       </p>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-700/30">
+                  <p className="text-blue-800 dark:text-blue-300 font-semibold text-center text-lg">
+                    🔹 <strong>Set it up in minutes.</strong> 🔹
+                    <strong>Wake up to qualified interviews.</strong> 🔹
+                    <strong>Scale hiring without scaling headcount.</strong>
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
-        {/* Use Cases */}
-        <section className="py-20 px-6 bg-white dark:bg-gray-800">
-          <div className="max-w-7xl mx-auto">
+        {/* Before vs After */}
+        <section className="py-20 px-8">
+          <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                  Common Use Cases
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">
+                  Before vs After{" "}
+                  <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    Leelu
+                  </span>
                 </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
-                  How talent operations teams use Leelu to drive results
+                <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  See the dramatic difference AI-powered hiring makes
                 </p>
               </div>
             </ScrollReveal>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  title: "Performance Optimization",
-                  description:
-                    "Identify top-performing recruiters and scale their best practices across the team.",
-                  benefits: [
-                    "Benchmark individual and team performance",
-                    "Identify and replicate successful strategies",
-                    "Provide data-driven coaching and development",
-                  ],
-                  icon: TrendingUp,
-                },
-                {
-                  title: "Process Standardization",
-                  description:
-                    "Create consistent, repeatable processes that deliver predictable results.",
-                  benefits: [
-                    "Standardize workflows across all recruiters",
-                    "Ensure compliance with company policies",
-                    "Reduce training time for new team members",
-                  ],
-                  icon: Settings,
-                },
-                {
-                  title: "Budget Optimization",
-                  description:
-                    "Maximize ROI on recruiting investments with data-driven budget allocation.",
-                  benefits: [
-                    "Track cost-per-hire across all channels",
-                    "Optimize spending on job boards and tools",
-                    "Demonstrate recruiting ROI to leadership",
-                  ],
-                  icon: DollarSign,
-                },
-                {
-                  title: "Capacity Planning",
-                  description:
-                    "Right-size your team and allocate resources based on actual demand and performance.",
-                  benefits: [
-                    "Forecast hiring needs and resource requirements",
-                    "Optimize team size and skill mix",
-                    "Plan for seasonal hiring fluctuations",
-                  ],
-                  icon: Users,
-                },
-              ].map((useCase, index) => (
-                <ScrollReveal key={index} delay={index * 100}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-8">
-                      <div className="flex items-center mb-6">
-                        <useCase.icon className="h-12 w-12 text-purple-600 dark:text-purple-400 mr-4" />
-                        <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                          {useCase.title}
-                        </h3>
+              {/* Before */}
+              <ScrollReveal>
+                <div className="bg-gradient-to-br from-red-50/70 to-orange-50/70 dark:from-red-900/10 dark:to-orange-900/10 p-8 rounded-3xl border border-red-200 dark:border-red-700/30 shadow-lg h-full">
+                  <div className="flex items-center mb-6">
+                    <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center mr-4">
+                      <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-red-700 dark:text-red-400">
+                      Before Leelu
+                    </h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {[
+                      "Sourcing one platform at a time",
+                      "Manual resume screening",
+                      "Days of back-and-forth for scheduling",
+                      "Scaling = hiring more recruiters",
+                      "High recruiter burnout & turnover",
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+                      >
+                        <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 mr-3 flex-shrink-0" />
+                        <span className="text-gray-600 dark:text-gray-300">
+                          {item}
+                        </span>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-300 mb-6">
-                        {useCase.description}
-                      </p>
-                      <ul className="space-y-3">
-                        {useCase.benefits.map((benefit, benefitIndex) => (
-                          <li key={benefitIndex} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700 dark:text-gray-300">
-                              {benefit}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              ))}
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* After */}
+              <ScrollReveal delay={200}>
+                <div className="bg-gradient-to-br from-green-50/70 to-emerald-50/70 dark:from-green-900/10 dark:to-emerald-900/10 p-8 rounded-3xl border border-green-200 dark:border-green-700/30 shadow-lg h-full">
+                  <div className="flex items-center mb-6">
+                    <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mr-4">
+                      <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-green-700 dark:text-green-400">
+                      After Leelu
+                    </h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {[
+                      "Sourcing across all platforms at once",
+                      "AI matches candidates to job descriptions",
+                      "Interviews booked automatically",
+                      "Scale hiring with the same team",
+                      "Recruiters focus on strategy & relationships",
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+                      >
+                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                        <span className="text-gray-600 dark:text-gray-300">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
-        {/* Testimonial */}
-        <section className="py-20 px-6 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10">
-          <div className="max-w-4xl mx-auto">
+        {/* How It Works */}
+        <section className="py-20 px-8 bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-800 dark:to-blue-900/10">
+          <div className="max-w-5xl mx-auto">
             <ScrollReveal>
-              <div className="text-center">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-12 border border-purple-200 dark:border-purple-700 shadow-xl">
-                  <div className="flex justify-center mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-6 w-6 text-yellow-400 fill-current"
-                      />
-                    ))}
-                  </div>
-                  <blockquote className="text-2xl font-medium text-gray-900 dark:text-white mb-8">
-                    "Leelu's operations intelligence transformed how we manage
-                    our recruiting function. We now have complete visibility
-                    into performance, can identify bottlenecks instantly, and
-                    our reporting time went from days to minutes."
-                  </blockquote>
-                  <div className="flex items-center justify-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                      MR
-                    </div>
-                    <div className="text-left">
-                      <div className="font-semibold text-gray-900 dark:text-white">
-                        Michael Rodriguez
-                      </div>
-                      <div className="text-gray-600 dark:text-gray-300">
-                        Director of Talent Operations, ScaleUp Inc
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">
+                  How It{" "}
+                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Works
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  Three simple steps to transform your hiring process
+                </p>
               </div>
             </ScrollReveal>
+
+            <div className="relative">
+              {/* Connecting line */}
+              <div className="absolute left-8 top-20 bottom-20 w-1 bg-gradient-to-b from-blue-200 to-purple-200 dark:from-blue-700 dark:to-purple-700 ml-6 hidden md:block"></div>
+
+              <div className="space-y-20">
+                {[
+                  {
+                    step: "1",
+                    title: "Set Up in Minutes",
+                    description:
+                      "Paste your job description, set your AI score threshold, choose interview time slots, and define messaging preferences. That's it.",
+                    icon: <Calendar className="h-8 w-8 text-blue-600" />,
+                    color: "blue",
+                  },
+                  {
+                    step: "2",
+                    title: "AI Sources & Scores",
+                    description:
+                      "Leelu searches across LinkedIn, Indeed, ATS, and job boards simultaneously. Every candidate is scored against your job description.",
+                    icon: <Zap className="h-8 w-8 text-purple-600" />,
+                    color: "purple",
+                  },
+                  {
+                    step: "3",
+                    title: "AI Engages & Books",
+                    description:
+                      "Qualified candidates receive personalized outreach. The AI replies to questions, handles scheduling, and books interviews — no human needed.",
+                    icon: <MessageCircle className="h-8 w-8 text-green-600" />,
+                    color: "green",
+                  },
+                ].map((step, index) => (
+                  <ScrollReveal key={index} delay={index * 100}>
+                    <div className="flex flex-col md:flex-row items-center gap-8 relative">
+                      <div
+                        className={`w-24 h-24 rounded-2xl bg-${step.color}-100 dark:bg-${step.color}-900/30 flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg`}
+                      >
+                        <div className="text-2xl font-bold absolute -top-3 -left-3 w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md border">
+                          {step.step}
+                        </div>
+                        {step.icon}
+                      </div>
+
+                      <div className="flex-1 bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <h3 className="text-2xl font-bold mb-4 dark:text-white">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300 text-lg">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-blue-600">
+        {/* Final CTA */}
+        <section className="py-20 px-8 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <ScrollReveal>
-              <h2 className="text-4xl font-bold text-white mb-6">
-                Ready to Optimize Your Operations?
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Ready to Transform Your Hiring?
               </h2>
-              <p className="text-xl text-purple-100 mb-8">
-                Join talent operations leaders who've transformed their
-                recruiting function with AI-powered insights and automation.
+              <p className="text-xl text-purple-100 mb-10 max-w-2xl mx-auto">
+                Join TA leaders who've cut time-to-interview by up to 90% and
+                scaled hiring without adding headcount.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                  Start Optimizing Today
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                  Start Your Free Trial
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-purple-600 px-8 py-3 rounded-full font-semibold bg-transparent"
+                  className="border-white text-white hover:bg-white hover:text-purple-600 px-8 py-4 rounded-xl font-semibold text-lg bg-transparent"
                 >
-                  Schedule Demo
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Demo
                 </Button>
               </div>
-              <p className="text-purple-100 mt-4">
+
+              <p className="text-purple-100 mt-6 text-sm">
                 No credit card required. Set up in under 5 minutes.
               </p>
             </ScrollReveal>
