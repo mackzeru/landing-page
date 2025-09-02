@@ -3,19 +3,12 @@ import {
   Search,
   Users,
   UserCog,
-  BarChart3,
   Briefcase,
-  Shield,
   Stethoscope,
-  School,
   Banknote,
   Factory,
-  PlugZap,
   Code2,
-  Network,
   Users2,
-  BookOpen,
-  Film,
   Info,
   Mail,
 } from "lucide-react";
@@ -33,20 +26,21 @@ const featuresDropdown = [
     icon: Search,
   },
 ];
-export const moreDropdown = [
+const resourceDropdown = [
   {
     title: "Knowledge Base",
-    description: "Access articles and tutorials",
+    description: "Search across all platforms simultaneously",
     href: "/knowledge-base",
-    icon: BookOpen,
+    icon: Search,
   },
-  //demo
-  {
-    title: "Demo",
-    description: "Watch a demo of Leelu",
-    href: "/demo",
-    icon: Film,
+    {
+    title: "Blog",
+    description: "Search across all platforms simultaneously",
+    href: "/blog",
+    icon: Search,
   },
+];
+export const moreDropdown = [
   //about
   {
     title: "About",
@@ -91,35 +85,7 @@ const industries = [
     icon: Banknote,
     color: "text-emerald-500",
   },
-  // {
-  //   title: "RPO/Staffing",
-  //   href: "/solutions/industries/rpo-staffing",
-  //   description: "Automate talent pipelines with tailored outreach",
-  //   icon: Network,
-  //   color: "text-green-500",
-  // },
-  // {
-  //   title: "Security & Defense",
-  //   href: "/solutions/industries/security-defense",
-  //   description: "Build secure teams with intelligent pools",
-  //   icon: Shield,
-  //   color: "text-gray-500",
-  // },
-  // {
-  //   title: "Education",
-  //   href: "/solutions/industries/education",
-  //   description: "Discover top educators with intelligent matching",
-  //   icon: School,
-  //   color: "text-yellow-500",
-  // },
-
-  // {
-  //   title: "Energy/Utilities",
-  //   href: "/solutions/industries/energy-utilities",
-  //   description: "Engage energy experts with precise matching",
-  //   icon: PlugZap,
-  //   color: "text-indigo-500",
-  // },
+  
 ];
 
 const stakeholders = [
@@ -144,22 +110,15 @@ const stakeholders = [
     icon: Briefcase,
     color: "text-yellow-500",
   },
-  // {
-  //   title: "Talent Operations",
-  //   href: "/solutions/stakeholder/talent-operations",
 
-  //   description: "Streamline operations with centralized AI insights",
-  //   icon: BarChart3,
-  //   color: "text-purple-500",
-  // },
   // people-operations
   {
     title: "People Operations",
     href: "/solutions/stakeholder/people-operations",
     description: "Streamline operations with centralized AI insights",
-    icon: Users2, // Changed to Users2 icon which better represents people/team operations
+    icon: Users2,
     color: "text-purple-500",
   },
 ];
 
-export { featuresDropdown, industries, stakeholders };
+export { featuresDropdown, industries, stakeholders,resourceDropdown };
