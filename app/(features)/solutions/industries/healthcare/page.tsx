@@ -23,8 +23,13 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import { useState } from "react";
+import VideoContainer from "@/app/(features)/_component/VideoContainer";
+import Link from "next/link";
 
 export default function HealthcarePage() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
@@ -51,11 +56,15 @@ export default function HealthcarePage() {
                   hiring.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-blue-700 hover:to-pink-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                    Start Hiring Healthcare Talent
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  <Link href="/#pricing">
+                    <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-blue-700 hover:to-pink-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                      Start Hiring Healthcare Talent
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+
                   <Button
+                    onClick={() => setIsDialogOpen(true)}
                     variant="outline"
                     className="px-8 py-3 rounded-full font-semibold bg-transparent"
                   >
@@ -639,6 +648,12 @@ export default function HealthcarePage() {
             </ScrollReveal>
           </div>
         </section>
+
+        {/* Modal Overlay */}
+        <VideoContainer
+          isDialogOpen={isDialogOpen}
+          setIsDialogOpen={setIsDialogOpen}
+        />
       </div>
     </PageLayout>
   );

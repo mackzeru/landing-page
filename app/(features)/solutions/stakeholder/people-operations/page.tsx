@@ -8,7 +8,6 @@ import {
   Target,
   CheckCircle,
   ArrowRight,
-  Play,
   Zap,
   Star,
   DollarSign,
@@ -22,8 +21,13 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import GetStartLink from "@/app/(features)/_component/GetStartLink";
+import { useState } from "react";
+import VideoContainer from "@/app/(features)/_component/VideoContainer";
 
 export default function PeopleOperationsPage() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
@@ -48,19 +52,7 @@ export default function PeopleOperationsPage() {
                   workflows, compliance automation, and data-driven insights
                   that scale with your organization.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                    Optimize Your Operations
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="px-8 py-3 rounded-full font-semibold bg-transparent"
-                  >
-                    <Play className="mr-2 h-5 w-5" />
-                    Watch Demo
-                  </Button>
-                </div>
+                <GetStartLink setIsDialogOpen={setIsDialogOpen} />
               </div>
             </ScrollReveal>
           </div>
@@ -565,6 +557,11 @@ export default function PeopleOperationsPage() {
             </ScrollReveal>
           </div>
         </section>
+        {/* Modal Overlay */}
+        <VideoContainer
+          isDialogOpen={isDialogOpen}
+          setIsDialogOpen={setIsDialogOpen}
+        />
       </div>
     </PageLayout>
   );

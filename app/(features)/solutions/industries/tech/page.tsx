@@ -23,8 +23,13 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import VideoContainer from "@/app/(features)/_component/VideoContainer";
+import { useState } from "react";
+import GetStartLink from "@/app/(features)/_component/GetStartLink";
 
 export default function TechITPage() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
@@ -50,19 +55,7 @@ export default function TechITPage() {
                   precision. Scale your tech hiring without compromising on
                   quality.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-blue-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                    Start Hiring Tech Talent
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="px-8 py-3 rounded-full font-semibold bg-transparent"
-                  >
-                    <Play className="mr-2 h-5 w-5" />
-                    Watch Demo
-                  </Button>
-                </div>
+                <GetStartLink setIsDialogOpen={setIsDialogOpen} />
               </div>
             </ScrollReveal>
           </div>
@@ -629,6 +622,11 @@ export default function TechITPage() {
             </ScrollReveal>
           </div>
         </section>
+        {/* Modal Overlay */}
+        <VideoContainer
+          isDialogOpen={isDialogOpen}
+          setIsDialogOpen={setIsDialogOpen}
+        />
       </div>
     </PageLayout>
   );

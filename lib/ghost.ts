@@ -5,10 +5,8 @@ import GhostContentAPI, {
 
 // Initialize Ghost API
 const api = new GhostContentAPI({
-  url: process.env.NEXT_PUBLIC_GHOST_API_URL ?? "http://192.168.43.62:2368",
-  key:
-    process.env.NEXT_PUBLIC_GHOST_CONTENT_API_KEY ??
-    "d1430b72c0476d0b563776b904",
+  url: process.env.NEXT_PUBLIC_GHOST_API_URL ?? "",
+  key: process.env.NEXT_PUBLIC_GHOST_CONTENT_API_KEY ?? "",
   version: "v5.0",
 });
 

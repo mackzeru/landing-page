@@ -11,11 +11,18 @@ import {
   Target,
   Users,
   Clock,
+  X,
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import { useState } from "react";
+import Link from "next/link";
+import VideoContainer from "@/app/(features)/_component/VideoContainer";
+import GetStartLink from "@/app/(features)/_component/GetStartLink";
 
 export default function TalentAcquisitionPage() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <PageLayout>
       <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
@@ -57,19 +64,7 @@ export default function TalentAcquisitionPage() {
                 </span>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 group">
-                  Start Free Trial
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button
-                  variant="outline"
-                  className="px-8 py-4 rounded-xl font-semibold text-lg border-2 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
-                >
-                  <Play className="mr-2 h-5 w-5" />
-                  Watch Demo
-                </Button>
-              </div>
+              <GetStartLink setIsDialogOpen={setIsDialogOpen} />
             </ScrollReveal>
           </div>
         </section>
@@ -436,6 +431,12 @@ export default function TalentAcquisitionPage() {
             </ScrollReveal>
           </div>
         </section>
+
+        {/* Modal Overlay */}
+        <VideoContainer
+          isDialogOpen={isDialogOpen}
+          setIsDialogOpen={setIsDialogOpen}
+        />
       </div>
     </PageLayout>
   );
