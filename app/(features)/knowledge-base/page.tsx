@@ -22,6 +22,7 @@ import {
 import { useState } from "react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { categories, troubleshootingArticles } from "./demo";
+import Link from "next/link";
 
 export default function KnowledgeBasePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -150,7 +151,7 @@ export default function KnowledgeBasePage() {
                         onClick={() => setActiveCategory(category.id)}
                         className={`w-full flex items-center justify-between p-4 rounded-xl text-left transition-all duration-300 ${
                           activeCategory === category.id
-                            ? "bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg"
+                            ? "bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg"
                             : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md"
                         }`}
                       >
@@ -185,66 +186,68 @@ export default function KnowledgeBasePage() {
                         return (
                           <div key={categoryId} className="space-y-6">
                             <div className="flex items-center space-x-3 mb-6">
-                              <categoryInfo.icon className="h-6 w-6 text-purple-500" />
+                              <categoryInfo.icon className="h-6 w-6 text-red-500" />
                               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                                 {categoryInfo.title}
                               </h2>
                             </div>
                             <div className="grid gap-6">
                               {articles.map((article) => (
-                                <Card
+                                <Link
+                                  href={`/knowledge-base/${article.id}`}
                                   key={article.id}
-                                  className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.01] bg-white dark:bg-gray-800 border-0 shadow-lg dark:shadow-gray-900/50 cursor-pointer"
                                 >
-                                  <CardContent className="p-6">
-                                    <div className="flex items-start justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center space-x-3 mb-3">
-                                          <div className="flex flex-wrap gap-2">
-                                            {article.tags
-                                              .slice(0, 2)
-                                              .map((tag) => (
-                                                <Badge
-                                                  key={tag}
-                                                  variant="outline"
-                                                  className="text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-800"
-                                                >
-                                                  {tag}
-                                                </Badge>
-                                              ))}
+                                  <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.01] bg-white dark:bg-gray-800 border-0 shadow-lg dark:shadow-gray-900/50 cursor-pointer">
+                                    <CardContent className="p-6">
+                                      <div className="flex items-start justify-between">
+                                        <div className="flex-1">
+                                          <div className="flex items-center space-x-3 mb-3">
+                                            <div className="flex flex-wrap gap-2">
+                                              {article.tags
+                                                .slice(0, 2)
+                                                .map((tag) => (
+                                                  <Badge
+                                                    key={tag}
+                                                    variant="outline"
+                                                    className="text-red-600 dark:text-red-400 border-red-200 dark:border-red-800"
+                                                  >
+                                                    {tag}
+                                                  </Badge>
+                                                ))}
+                                            </div>
+                                            <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                                              <div className="flex items-center space-x-1">
+                                                <Clock className="h-4 w-4" />
+                                                <span>{article.readTime}</span>
+                                              </div>
+                                              <div className="flex items-center space-x-1">
+                                                <User className="h-4 w-4" />
+                                                <span>{article.author}</span>
+                                              </div>
+                                            </div>
                                           </div>
-                                          <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                                            <div className="flex items-center space-x-1">
-                                              <Clock className="h-4 w-4" />
-                                              <span>{article.readTime}</span>
-                                            </div>
-                                            <div className="flex items-center space-x-1">
-                                              <User className="h-4 w-4" />
-                                              <span>{article.author}</span>
-                                            </div>
+                                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">
+                                            {article.title}
+                                          </h3>
+                                          <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
+                                            {article.description}
+                                          </p>
+                                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                                            Published on{" "}
+                                            {new Date(
+                                              article.date
+                                            ).toLocaleDateString("en-US", {
+                                              year: "numeric",
+                                              month: "long",
+                                              day: "numeric",
+                                            })}
                                           </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
-                                          {article.title}
-                                        </h3>
-                                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
-                                          {article.description}
-                                        </p>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                                          Published on{" "}
-                                          {new Date(
-                                            article.date
-                                          ).toLocaleDateString("en-US", {
-                                            year: "numeric",
-                                            month: "long",
-                                            day: "numeric",
-                                          })}
-                                        </div>
+                                        <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300 ml-4 flex-shrink-0" />
                                       </div>
-                                      <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 ml-4 flex-shrink-0" />
-                                    </div>
-                                  </CardContent>
-                                </Card>
+                                    </CardContent>
+                                  </Card>
+                                </Link>
                               ))}
                             </div>
                           </div>
@@ -263,7 +266,7 @@ export default function KnowledgeBasePage() {
                               );
                               return category ? (
                                 <>
-                                  <category.icon className="h-6 w-6 text-purple-500" />
+                                  <category.icon className="h-6 w-6 text-red-500" />
                                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                                     {category.label} ({filteredArticles.length}{" "}
                                     articles)
@@ -274,59 +277,61 @@ export default function KnowledgeBasePage() {
                           </div>
                           <div className="grid gap-6">
                             {filteredArticles.map((article) => (
-                              <Card
+                              <Link
+                                href={`/knowledge-base/${article.id}`}
                                 key={article.id}
-                                className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.01] bg-white dark:bg-gray-800 border-0 shadow-lg dark:shadow-gray-900/50 cursor-pointer"
                               >
-                                <CardContent className="p-6">
-                                  <div className="flex items-start justify-between">
-                                    <div className="flex-1">
-                                      <div className="flex items-center space-x-3 mb-3">
-                                        <div className="flex flex-wrap gap-2">
-                                          {article.tags
-                                            .slice(0, 3)
-                                            .map((tag) => (
-                                              <Badge
-                                                key={tag}
-                                                variant="outline"
-                                                className="text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-800"
-                                              >
-                                                {tag}
-                                              </Badge>
-                                            ))}
+                                <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-[1.01] bg-white dark:bg-gray-800 border-0 shadow-lg dark:shadow-gray-900/50 cursor-pointer">
+                                  <CardContent className="p-6">
+                                    <div className="flex items-start justify-between">
+                                      <div className="flex-1">
+                                        <div className="flex items-center space-x-3 mb-3">
+                                          <div className="flex flex-wrap gap-2">
+                                            {article.tags
+                                              .slice(0, 3)
+                                              .map((tag) => (
+                                                <Badge
+                                                  key={tag}
+                                                  variant="outline"
+                                                  className="text-red-600 dark:text-red-400 border-red-200 dark:border-red-800"
+                                                >
+                                                  {tag}
+                                                </Badge>
+                                              ))}
+                                          </div>
+                                          <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                                            <div className="flex items-center space-x-1">
+                                              <Clock className="h-4 w-4" />
+                                              <span>{article.readTime}</span>
+                                            </div>
+                                            <div className="flex items-center space-x-1">
+                                              <User className="h-4 w-4" />
+                                              <span>{article.author}</span>
+                                            </div>
+                                          </div>
                                         </div>
-                                        <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                                          <div className="flex items-center space-x-1">
-                                            <Clock className="h-4 w-4" />
-                                            <span>{article.readTime}</span>
-                                          </div>
-                                          <div className="flex items-center space-x-1">
-                                            <User className="h-4 w-4" />
-                                            <span>{article.author}</span>
-                                          </div>
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">
+                                          {article.title}
+                                        </h3>
+                                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
+                                          {article.description}
+                                        </p>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                                          Published on{" "}
+                                          {new Date(
+                                            article.date
+                                          ).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                          })}
                                         </div>
                                       </div>
-                                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
-                                        {article.title}
-                                      </h3>
-                                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
-                                        {article.description}
-                                      </p>
-                                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                                        Published on{" "}
-                                        {new Date(
-                                          article.date
-                                        ).toLocaleDateString("en-US", {
-                                          year: "numeric",
-                                          month: "long",
-                                          day: "numeric",
-                                        })}
-                                      </div>
+                                      <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300 ml-4 flex-shrink-0" />
                                     </div>
-                                    <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 ml-4 flex-shrink-0" />
-                                  </div>
-                                </CardContent>
-                              </Card>
+                                  </CardContent>
+                                </Card>
+                              </Link>
                             ))}
                           </div>
                         </>
