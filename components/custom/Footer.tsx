@@ -182,8 +182,9 @@ const Footer = () => {
   // 📞 Trust & Company Pages
   const trustCompanyLinks: FooterLink[] = [
     { label: "About Us", href: "/about" },
-    { label: "Help Center", href: "/help" },
     { label: "Contact", href: "/contact" },
+    { label: "Help Center", href: "/help" },
+
   ];
 
   const socialLinks: SocialLink[] = [

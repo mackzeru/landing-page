@@ -7,7 +7,6 @@ import { ChevronDown, Menu, Sparkles, X } from "lucide-react";
 import {
   featuresDropdown,
   industries,
-  moreDropdown,
   resourceDropdown,
   stakeholders,
 } from "./demo";
@@ -17,13 +16,11 @@ const Navigation = () => {
   const router = useRouter();
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
   const [isResourceOpen, setIsResourceOpen] = useState(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isSolutionOpen, setIsSolutionOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const featuresRef = useRef<HTMLDivElement>(null);
   const solutionRef = useRef<HTMLDivElement>(null);
   const resourceRef = useRef<HTMLDivElement>(null);
-  const moreRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -39,9 +36,6 @@ const Navigation = () => {
         !solutionRef.current.contains(event.target as Node)
       ) {
         setIsSolutionOpen(false);
-      }
-      if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
-        setIsMoreOpen(false);
       }
       if (
         resourceRef.current &&
@@ -268,48 +262,7 @@ const Navigation = () => {
             >
               Pricing
             </Link>
-            {/* More  Dropdown */}
-            <div className="relative" ref={moreRef}>
-              <button
-                onClick={() => setIsMoreOpen(!isMoreOpen)}
-                className={`flex items-center space-x-1 cursor-pointer transition-colors font-medium nav-link ${pathname.startsWith("/features")
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  }`}
-                aria-haspopup="true"
-                aria-expanded={isMoreOpen}
-              >
-                <span>More</span>
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${isMoreOpen ? "rotate-180" : ""
-                    }`}
-                />
-              </button>
-
-              {isMoreOpen && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 py-4 z-50">
-                  {moreDropdown.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.href}
-                      className="group flex items-start space-x-3 px-6 py-3 rounded-md transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 hover:shadow-md"
-                    >
-                      <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mt-1 transition-colors group-hover:bg-blue-200 dark:group-hover:bg-blue-800/30">
-                        <item.icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                          {item.title}
-                        </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">
-                          {item.description}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+     
           </div>
 
           {/* Right Side Actions */}
@@ -430,18 +383,7 @@ const Navigation = () => {
                 Demo
               </Link>
              
-              <Link
-                href="/about"
-                className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                Contact
-              </Link>
+             
               <Link
                 href="/#pricing"
                 className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
