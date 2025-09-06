@@ -11,6 +11,8 @@ import {
   Users2,
   Info,
   Mail,
+  FileText,
+  BookOpen,
 } from "lucide-react";
 const featuresDropdown = [
   {
@@ -26,18 +28,19 @@ const featuresDropdown = [
     icon: Search,
   },
 ];
+
 const resourceDropdown = [
   {
     title: "Knowledge Base",
     description: "Search across all platforms simultaneously",
     href: "/knowledge-base",
-    icon: Search,
+    icon: BookOpen, // More appropriate for knowledge base
   },
-    {
+  {
     title: "Blog",
-    description: "Search across all platforms simultaneously",
+    description: "Read our latest articles and insights",
     href: "/blog",
-    icon: Search,
+    icon: FileText, // Better represents blog content
   },
 ];
 export const moreDropdown = [
