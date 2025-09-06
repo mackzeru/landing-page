@@ -29,29 +29,42 @@ export interface GhostSettings {
  */
 
 export async function getPosts(
-  tagSlug: string,
-  currentPage: number,
-  limit: number,
+  tagSlug?: string,
+  currentPage: number = 1,
+  limit: number = 10,
   search?: string,
   isFeatured?: boolean,
 ): Promise<PostsOrPages> {
-  const filters: string[] = []; 
-  filters.push(`tag:${tagSlug}`);
-  if (search) {
-    filters.push(`title:~'${search.replace(/'/g, "\\'")}*'`);
-  }
-  if(isFeatured){
-    filters.push("featured:true");
-  }
-  const filterString = filters.length ? filters.join("+") : undefined;
-
-  return await api.posts.browse({
-    filter: filterString, // This will now be "tag:tag-blog" instead of "tag:blog"
+  const options: any = {
     limit,
     page: currentPage,
     include: ["tags", "authors"],
     order: "published_at DESC",
-  });
+  };
+
+  // Build filter array
+  const filterParts: string[] = [];
+  
+  if (tagSlug) {
+    const cleanTagSlug = tagSlug.replace(/^tag:/, '');
+    filterParts.push(`tag:${cleanTagSlug}`);
+  }
+  
+  if (isFeatured) {
+    filterParts.push("featured:true");
+  }
+  
+  // Apply filter if we have any filter parts
+  if (filterParts.length > 0) {
+    options.filter = filterParts.join("+");
+  }
+  
+  // Apply search separately (Ghost handles this better)
+  if (search) {
+    options.search = search; // Ghost automatically adds wildcards for search
+  }
+
+  return await api.posts.browse(options);
 }
 
 
