@@ -17,8 +17,11 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/custom/page-layou";
 import { ScrollReveal } from "@/components/custom/ScrollReveal";
+import { PremiumDemoButton } from "../../_component/button";
+import { useState } from "react";
 
 export default function CopilotPage() {
+  const [,setIsDialogOpen]= useState<boolean>(false);
   return (
     <PageLayout>
       {/* Hero Section */}
@@ -73,13 +76,7 @@ export default function CopilotPage() {
                     Start Free Trial
                     <ArrowRight className="h-5 w-5 ml-2" />
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="border-2 border-gray-300 dark:border-gray-600 px-8 py-3 rounded-full font-semibold text-lg bg-transparent"
-                  >
-                    <Play className="h-5 w-5 mr-2" />
-                    Watch Demo
-                  </Button>
+                  <PremiumDemoButton setIsDialogOpen={(val)=>setIsDialogOpen(val)} />
                 </div>
               </div>
             </ScrollReveal>

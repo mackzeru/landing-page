@@ -1,7 +1,6 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
 import Link from "next/link";
+import { PremiumDemoButton } from "./button";
 
 const GetStartLink = ({
   setIsDialogOpen,
@@ -23,14 +22,8 @@ const GetStartLink = ({
       >
         Start Free Trial
       </Link>
-      <Button
-        variant="outline"
-        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 px-8 py-3 rounded-full font-medium text-base shadow-lg"
-        onClick={() => setIsDialogOpen(true)}
-      >
-        <Play className="h-4 w-4 mr-2" />
-        Watch Demo
-      </Button>
+      <PremiumDemoButton setIsDialogOpen={setIsDialogOpen} />
+      
     </div>
   );
 };

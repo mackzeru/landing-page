@@ -9,7 +9,6 @@ import {
   Shield,
   CheckCircle,
   ArrowRight,
-  Play,
   Globe,
   Users,
   Star,
@@ -22,6 +21,7 @@ import { ScrollReveal } from "@/components/custom/ScrollReveal";
 import VideoContainer from "@/app/(features)/_component/VideoContainer";
 import { useState } from "react";
 import Link from "next/link";
+import { EnhancedDemoButton } from "@/app/(features)/_component/button";
 
 export default function HiringManagersPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -58,14 +58,9 @@ export default function HiringManagersPage() {
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
-                  <Button
-                    onClick={() => setIsDialogOpen(true)}
-                    variant="outline"
-                    className="px-8 py-3 rounded-full font-semibold bg-transparent"
-                  >
-                    <Play className="mr-2 h-5 w-5" />
-                    Watch Demo
-                  </Button>
+                  <EnhancedDemoButton
+                    setIsDialogOpen={() => setIsDialogOpen(true)}
+                  />
                 </div>
               </div>
             </ScrollReveal>
